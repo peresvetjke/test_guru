@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_112651) do
+ActiveRecord::Schema.define(version: 2021_09_04_113559) do
 
   create_table "answers", force: :cascade do |t|
-    t.text "body"
+    t.text "body", null: false
     t.boolean "correct"
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 2021_09_04_112651) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.text "title"
+    t.text "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.text "body"
+    t.text "body", null: false
     t.integer "test_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_112651) do
   end
 
   create_table "tests", force: :cascade do |t|
-    t.text "title"
+    t.text "title", null: false
     t.integer "level"
     t.text "reference"
     t.integer "category_id", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_112651) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.text "login"
+    t.text "login", null: false
     t.text "email"
     t.text "name"
     t.text "surname"
