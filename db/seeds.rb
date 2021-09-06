@@ -6,31 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-2.times do |i|
-  Category.create(title: "Category ##{i}")
+for c_i in 1..3
+  category = Category.create(title: "Category ##{c_i}")
+  user = User.create(login: "User ##{c_i}")
+  
+  for t_i in 1..5
+    test = Test.create(title: "Test ##{t_i} (category_id: #{category.id}, level: #{t_i%2})", category_id: category.id, level: t_i%2)
+    Assessment.create(test_id: t_i, user_id: user.id)
+  end
 end
 
-5.times do |i|
-  Test.create(title: "Test ##{i} (category_id: 1, level: 1)", category_id: 1, level: 1) 
-end
-
-5.times do |i|
-  Test.create(title: "Test ##{i} (category_id: 1, level: 2)", category_id: 1, level: 2) 
-end
-
-5.times do |i|
-  Test.create(title: "Test ##{i} (category_id: 2, level: 1)", category_id: 2, level: 1) 
-end
-
-5.times do |i|
-  Test.create(title: "Test ##{i} (category_id: 2, level: 2)", category_id: 2, level: 2) 
-end
-
-2.times do |i|
-  User.create(login: "User ##{i}")
-end
-
-5.times do |i|
-  Assessment.create(test_id: i, user_id: 1)
-  Assessment.create(test_id: i+5, user_id: 2)
-end
