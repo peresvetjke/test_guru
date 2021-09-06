@@ -3,7 +3,7 @@ class Test < ApplicationRecord
   has_many :assessments
   has_many :users, through: :assessments
 
-  def self.same_category_tests(category_title)
-    Category.joins(:tests).select('tests.title').distinct.where("categories.title = ?", category_title).order('tests.title DESC').pluck('tests.title')
+  def self.list_by_category_title(category_title)
+    Test.joins(:category).select('tests.title').distinct.where("categories.title = ?", category_title).order('tests.title DESC').pluck('tests.title')
   end
 end
