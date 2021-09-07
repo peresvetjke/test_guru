@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+for c_i in 1..3
+  category = Category.create(title: "Category ##{c_i}")
+  user = User.create(login: "User ##{c_i}")
+  
+  for t_i in 1..5
+    test = Test.create(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i%2})", category_id: category.id, level: t_i%2)
+    Assessment.create(test_id: t_i, user_id: user.id)
+
+    for q_i in 1..5
+    question = Question.create(body: "Question #{q_i} (test_id: #{test.id})", test_id: test.id)
+      for a_i in 1..3
+        answer = Answer.create(body: "Answer #{a_i} (test_id: #{test.id}; question_id: #{q_i})" , question_id: question.id)
+      end
+    end
+  end
+end
+
