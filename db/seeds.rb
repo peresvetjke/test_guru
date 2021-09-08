@@ -8,10 +8,11 @@
 
 for c_i in 1..3
   category = Category.create(title: "Category ##{c_i}")
+  author = User.create(login: "Author ##{c_i}")
   user = User.create(login: "User ##{c_i}")
   
   for t_i in 1..5
-    test = Test.create(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i%2})", category_id: category.id, level: t_i%2)
+    test = Test.create(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i%2}; author: #{author.id})", category_id: category.id, level: t_i%2, author_id: author.id)
     Assessment.create(test_id: t_i, user_id: user.id)
 
     for q_i in 1..5

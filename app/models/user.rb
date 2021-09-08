@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :issues, class_name: :Test, foreign_key: :author_id
   has_many :assessments
   has_many :tests, through: :assessments
 
