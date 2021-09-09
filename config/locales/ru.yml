@@ -32,21 +32,22 @@
 ru:
   activerecord:
     attributes:
-      category:
-        title: 'Название'
-      test:
-        title: 'Название'
-        author: 'Автор'
-        category: 'Категория'
-      question:
-        body: 'Содержание'
-        test: 'Тест'
       answer:
         question: 'Вопрос'
         body: 'Содержание'
       assessment:
         test: 'Тест'
         user: 'Пользователь'
+      category:
+        title: 'Название'
+      test:
+        author: 'Автор'
+        title: 'Название'
+        category: 'Категория'
+        level: 'Уровень сложности'
+      question:
+        body: 'Содержание'
+        test: 'Тест'
       user:
         email: 'Адрес электронной почты'
         login: 'Имя учетной записи'
@@ -62,6 +63,9 @@ ru:
               required: 'не может быть пустым'
             category:
               required: 'не может быть пустым'
+            level: 
+              greater_than: 'должен быть больше %{count}'
+              not_an_integer: 'должен быть целым'
         category:
           attributes:
             title:

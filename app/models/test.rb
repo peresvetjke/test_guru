@@ -5,6 +5,7 @@ class Test < ApplicationRecord
   has_many   :users, through: :assessments
 
   validates :title, presence: true
+  validates :level, numericality: { only_integer: true, greater_than: 0 }
 
   scope :easy,   -> { where('level in (0, 1)')    }
   scope :medium, -> { where('level in (2, 3, 4)') }
