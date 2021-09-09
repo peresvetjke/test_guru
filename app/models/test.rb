@@ -4,6 +4,8 @@ class Test < ApplicationRecord
   has_many   :assessments
   has_many   :users, through: :assessments
 
+  validates :title, presence: true
+
   scope :easy,   -> { where('level in (0, 1)')    }
   scope :medium, -> { where('level in (2, 3, 4)') }
   scope :hard,   -> { where('level >= 5')         }

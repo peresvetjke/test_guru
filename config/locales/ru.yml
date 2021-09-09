@@ -30,4 +30,66 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ru:
+  activerecord:
+    attributes:
+      category:
+        title: 'Название'
+      test:
+        title: 'Название'
+        author: 'Автор'
+        category: 'Категория'
+      question:
+        body: 'Содержание'
+        test: 'Тест'
+      answer:
+        question: 'Вопрос'
+        body: 'Содержание'
+      assessment:
+        test: 'Тест'
+        user: 'Пользователь'
+      user:
+        email: 'Адрес электронной почты'
+        login: 'Имя учетной записи'
+    errors:
+      messages:
+        record_invalid: 'Запись не корректна'
+      models:
+        test:
+          attributes:
+            title:
+              blank: 'не может быть пустым'
+            author:
+              required: 'не может быть пустым'
+            category:
+              required: 'не может быть пустым'
+        category:
+          attributes:
+            title:
+              blank: 'не может быть пустым'
+        question:
+          attributes:
+            body:
+              blank: 'не может быть пустым'
+            test:
+              required: 'не может быть пустым'
+        answer:
+          attributes:
+            question:
+              required: 'не может быть пустым'
+            body:
+              blank: 'не может быть пустым'
+        assessment:
+          attributes:
+            test:
+              required: 'не может быть пустым'
+            user:
+              required: 'не может быть пустым'
+        user:
+          attributes:
+            email:
+              blank: 'не может быть пустым'
+            login:
+              blank: 'не может быть пустым'
+
+  #activerecord.errors.models.test.attributes.title.blank
   hello: "Здравствуй, мир!"
