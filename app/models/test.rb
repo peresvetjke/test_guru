@@ -6,6 +6,7 @@ class Test < ApplicationRecord
 
   validates :title, presence: true
   validates :level, numericality: { only_integer: true, greater_than: 0 }
+  validates :title, uniqueness: { scope: :level, message: 'уже занято для данного уровня' }
 
   scope :easy,   -> { where('level in (0, 1)')    }
   scope :medium, -> { where('level in (2, 3, 4)') }
