@@ -11,5 +11,9 @@ class Test < ApplicationRecord
   scope :easy,   -> { where('level in (0, 1)')    }
   scope :medium, -> { where('level in (2, 3, 4)') }
   scope :hard,   -> { where('level >= 5')         }
-  scope :category_title, -> (category_title) { joins(:category).select('tests.title').distinct.where("categories.title = ?", category_title).order('tests.title DESC') }
+  scope :category_title, -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
+
+  def self.titles_by_category_title(category_title)
+    Test.category_title(category_title).select('tests.title').distinct.order('tests.title DESC').pluck('tests.title')
+  end
 end
