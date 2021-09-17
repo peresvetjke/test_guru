@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"> 
+  <title>New question</title>
+</head>
+
+<body>
+<br>
+<form action="/tests/<%= params[:test_id] %>/questions/" method="post">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <label for="question_body">Question:</label>
+  <input type="text" name="question[body]" id="question_body">
+  <br>
+  <input type="submit" value="Create">
+  <p style="color:red"> <%= @question.errors.full_messages if !@question.nil? %> </p>
+
+</form>
+</body>
+</html>
