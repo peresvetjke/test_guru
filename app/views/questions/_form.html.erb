@@ -1,0 +1,6 @@
+<%= form_with model: @question do |form| %>
+  <%= form.label :body %> <br>
+  <%= form.text_field :body %> <br>
+  
+  <%= form.submit 'Сохранить' %>
+<% end %>

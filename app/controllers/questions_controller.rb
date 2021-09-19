@@ -1,11 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :find_test,     only: [:index, :create]
-  before_action :find_question, only: [:show, :destroy]
+  before_action :find_question, only: [:show, :edit, :update, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_record_not_found
 
   def index
     @questions = @test.questions
-    render inline: "<ul> <% @questions.each do |q| %> <li>ID:<%= q.id %> / <%= q.body %> <%= button_to 'Destroy', question_path(q), data: {:confirm => 'Are you sure?'}, :method => :delete %> </li> <% end %> </ul>"
+    #render inline: "<ul> <% @questions.each do |q| %> <li>ID:<%= q.id %> / <%= q.body %> <%= button_to 'Destroy', question_path(q), data: {:confirm => 'Are you sure?'}, :method => :delete %> </li> <% end %> </ul>"
   end
 
   def new
@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    render inline: "ID: <%= @question.id %> / <%= @question.body %>"
+    #render inline: "ID: <%= @question.id %> / <%= @question.body %>"
   end
 
   def edit
