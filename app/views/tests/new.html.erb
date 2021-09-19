@@ -1,0 +1,20 @@
+<% if @test.errors.present? %>
+  <h3> <%= t('validate_errors.error', count: @test.errors.count) %>: </h2>
+  <% @test.errors.full_messages.each do |message| %>
+  <ul>
+  <li> <%= message %> </li>
+  </ul>
+  <% end %>
+<% end %>
+
+<br>
+<%= form_with model: @test do |form| %>
+  <%= form.label :title %> <br>
+  <%= form.text_field :title %> <br>
+  <%= form.label :category_id %> <br>
+  <%= form.collection_select :category_id, Category.order(:name), :id, :title %> <br>
+  <br>
+  <%= form.submit 'Создать' %>
+<% end %>
+
+<%= link_to 'Вернуться', tests_path %>

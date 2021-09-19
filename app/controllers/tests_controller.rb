@@ -1,27 +1,38 @@
 class TestsController < ApplicationController
-  before_action :find_test, only: [:show, :destroy]
+  before_action :find_test, only: [:show, :edit, :destroy]
   
   def index
     @tests = Test.all
-    render inline: "<ul> <% @tests.each do |t| %> <li>ID:<%= t.id %> / <%= t.title %> " \
-                   "<%= button_to 'Destroy', test_path(t), data: {:confirm => 'Are you sure?'}," \
-                   " :method => :delete %> </li> <% end %> </ul>"
   end
 
   def new
+    @test = Test.new
   end
 
   def create
+    @test = Test.new(test_params)
+
+    if @test.save
+      redirect_to @test
+    else
+      render :new
+    end
   end
 
   def show
-    render inline: "ID: <%= @test.id %> / <%= @test.title %>"
   end
 
   def edit
   end
 
   def update
+    @test = Test.new(test_params)
+
+    if @test.save
+      redirect_to @test
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -33,5 +44,9 @@ class TestsController < ApplicationController
 
   def find_test
     @test = Test.find(params[:id])
+  end
+
+  def test_params
+    params.require(:test).permit(:id, :title, :level, :category_id)
   end
 end

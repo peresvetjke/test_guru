@@ -30,6 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ru:
+  validate_errors:
+    error:
+      one: "Форма содержит %{count} ошибку"
+      few: "Форма содержит %{count} ошибки"
+      many: "Форма содержит %{count} ошибок"
+      other: "Форма содержит %{count} ошибок"
   activerecord:
     attributes:
       answer:
@@ -44,6 +50,7 @@ ru:
         author: 'Автор'
         title: 'Название'
         category: 'Категория'
+        category_id: 'Категория'
         level: 'Уровень сложности'
       question:
         answers: 'Кол-во вопросов'
@@ -59,45 +66,45 @@ ru:
         test:
           attributes:
             title:
-              blank: 'не может быть пустым'
+              blank: 'не заполнено'
             author:
-              required: 'не может быть пустым'
+              required: 'не заполнен'
             category:
-              required: 'не может быть пустым'
+              required: 'не заполнена'
             level: 
               greater_than: 'должен быть больше %{count}'
               not_an_integer: 'должен быть целым'
         category:
           attributes:
             title:
-              blank: 'не может быть пустым'
+              blank: 'не заполнено'
         question:
           attributes:
             body:
-              blank: 'не может быть пустым'
+              blank: 'не заполнено'
             test:
-              required: 'не может быть пустым'
+              required: 'не заполнено'
             answers:
               too_short: 'недостаточно (минимальное значение %{count})'
               too_long: 'превышено (максимальное значение значение %{count})'
         answer:
           attributes:
             question:
-              required: 'не может быть пустым'
+              required: 'не заполнено'
             body:
-              blank: 'не может быть пустым'
+              blank: 'не заполнено'
         assessment:
           attributes:
             test:
-              required: 'не может быть пустым'
+              required: 'не заполнено'
             user:
-              required: 'не может быть пустым'
+              required: 'не заполнено'
         user:
           attributes:
             email:
-              blank: 'не может быть пустым'
+              blank: 'не заполнено'
             login:
-              blank: 'не может быть пустым'
+              blank: 'не заполнено'
 
   #activerecord.errors.models.test.attributes.title.blank
   hello: "Здравствуй, мир!"
