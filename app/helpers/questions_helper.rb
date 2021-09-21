@@ -1,8 +1,8 @@
 module QuestionsHelper
-  def question_header
-    if ['new', 'create'].include? (params[:action])
+  def question_header(question)
+    if question.new_record?
       "Создание нового вопроса для теста '#{@question.test.title}'"
-    elsif ['edit', 'update'].include? (params[:action])
+    else
       "Изменение вопроса для теста '#{@question.test.title}'"
     end
   end
