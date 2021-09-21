@@ -1,13 +1,27 @@
-<h2><%= @test.title %></h2>
+<h2>Тест '<%= @test.title %>'</h2>
 <% if @test.questions.present? %>
-<ul>
+<h3>Список вопросов:</h3>
+  <table>
+  <tr>
+    <th>Содержание</th>
+    <th colspan="3">Действия</th>
+  </tr>
   <% @test.questions.each do |question| %>
-  <li>
-    <%= question.body %>
-  </li>
+    <tr>
+      <td><%= question.body %></td>
+      <td><%= link_to 'Просмотреть', question_path(question) %></td>
+      <td><%= link_to 'Изменить', edit_question_path(question) %></td>
+      <td><%= link_to 'Удалить', question_path(question),
+                                  method: :delete,
+                                  data: { confirm: 'Вы действительно хотите удалить запись?' } %></td>
+    </tr>
   <% end %>
-</ul>
+  </table>
+<% else %>
+  <p>Вопросов пока нет.</p>
 <% end %>
-
-<p> <%= link_to 'Изменить', edit_test_path %> |
-<%= link_to 'Вернуться', tests_path %> </p>
+<br>
+<%= link_to 'Новый вопрос', new_test_question_path(@test) %>
+<br><br>
+<%= link_to 'Изменить', edit_test_path %> |
+<%= link_to 'Вернуться', tests_path %>

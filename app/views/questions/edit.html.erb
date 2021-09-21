@@ -1,5 +1,5 @@
-<h2><%= @question.title %></h2>
+<h2><%= question_header %></h2>
 <%= render 'shared/errors', resource: @question %>
 <%= render 'form' %>
 
-<%= link_to 'Вернуться', tests_path %>
+<%= link_to 'Вернуться', test_path(@question.test) %>

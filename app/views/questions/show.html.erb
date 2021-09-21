@@ -2,4 +2,4 @@
 <h3><%= @question.body %></h3>
 
 <p> <%= link_to 'Изменить', edit_question_path %> |
-<%= link_to 'Вернуться', test_questions_path %> </p>
+<%= link_to 'Вернуться', test_path(@question.test) %> </p>
