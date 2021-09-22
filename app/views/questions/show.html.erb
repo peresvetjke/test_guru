@@ -1,0 +1,5 @@
+<h2>Вопрос для теста "<%= @question.test.title %>"</h2>
+<h3><%= @question.body %></h3>
+
+<p> <%= link_to 'Изменить', edit_question_path %> |
+<%= link_to 'Вернуться', test_path(@question.test) %> </p>
