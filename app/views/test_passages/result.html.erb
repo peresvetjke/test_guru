@@ -1,0 +1,22 @@
+<% if @test_passage.completed? %>
+
+  <% if @test_passage.passed? %>
+    <% color = "green" %>
+    <% message = 'Тест пройден.' %>
+  <% else %>
+    <% color = "red" %>
+    <% message = 'К сожалению, тест не пройден.' %>
+  <% end %>
+
+  <h2>Прохождение теста '<%= @test_passage.test.title %>' завершено.</h2> 
+
+    <h3 style="color:<%= color%>;"><%= message %></h3>
+    <p>вы ответили верно на <span style="color:<%= color%>"><%= number_to_percentage(@test_passage.success_percent, precision: 0) %></span> вопросов.</p>
+
+<% else %>
+<h2> Вы еще не прошли тест до конца.</h2>
+<%= link_to 'Вернуться к выполнению теста', @test_passage %>
+
+<% end %>
+<br><br>
+<%= link_to 'Перейти к списку тестов', tests_path %>
