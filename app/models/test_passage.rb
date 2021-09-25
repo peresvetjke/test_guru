@@ -5,17 +5,10 @@ class TestPassage < ApplicationRecord
 
   after_initialize :after_initialize_set_current_question, if: :new_record?
   after_initialize :after_initialize_set_correct_answers, if: :new_record?
-#  after_update :after_update_set_passage_completed, on: :update, if: :completed?
   after_validation :after_validation_define_next_question, on: :update, unless: :completed?
   
 
   PASSING_PERCENTAGE = 85.freeze
-
-#  def next_question
-#    self.current_question = test.questions.where('id > ?', self.current_question).order(id: :asc).first
-#    byebug
-#    save    
-#  end
   
   def accept!(answer_ids)
     evaluate_answer(answer_ids)

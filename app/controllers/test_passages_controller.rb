@@ -16,11 +16,9 @@ class TestPassagesController < ApplicationController
   end
 
   def result
-    # raise 'Тест еще не пройден до конца!' unless @test_passage.completed?
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_test_passage
       @test_passage = TestPassage.find(params[:id])
     end
