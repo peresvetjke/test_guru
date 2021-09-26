@@ -23,7 +23,7 @@ class TestPassage < ApplicationRecord
   end
 
   def passed?
-    success_percent >= PASSING_PERCENTAGE ? true : false
+    success_percent >= PASSING_PERCENTAGE
   end
 
   def current_question_order_number

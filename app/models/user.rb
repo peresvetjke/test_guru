@@ -5,8 +5,6 @@ class User < ApplicationRecord
 
   validates :login, :email, presence: true
 
-  scope :test_level, -> (level) { Test.joins(:test_passages).where("tests.level = ?", level) }
-
   def test_level(level)
     tests.where(level: level)
   end
