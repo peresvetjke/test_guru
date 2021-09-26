@@ -4,7 +4,6 @@ class TestPassage < ApplicationRecord
   belongs_to :current_question, class_name: 'Question', optional: true
 
   after_initialize :after_initialize_set_current_question, if: :new_record?
-  after_initialize :after_initialize_set_correct_answers, if: :new_record?
   after_validation :after_validation_define_next_question, on: :update, unless: :completed?
   
 
@@ -40,10 +39,6 @@ class TestPassage < ApplicationRecord
 
   def after_initialize_set_current_question
     self.current_question = test.questions.order(id: :asc).first
-  end
-
-  def after_initialize_set_correct_answers
-    self.correct_questions = 0
   end
 
   def after_validation_define_next_question
