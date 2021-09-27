@@ -1,0 +1,13 @@
+<% flash.each do |type, msg| %>
+  <div class="alert alert-info">
+    <%= msg %>
+  </div>
+<% end %> <br>
+
+<%= form_tag sessions_path do %>
+    <%= label_tag "Email" %>
+    <%= text_field_tag :email, nil, placeholder: "email" %><br>
+    <%= label_tag "Password" %>
+    <%= password_field_tag :password, nil, placeholder: "password" %><br>
+    <%= submit_tag "Войти"%>
+<% end %>
