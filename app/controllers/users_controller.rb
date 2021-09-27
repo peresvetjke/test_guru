@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_params, only: :create
 
-  #attr_reader :password
-  #attr_writer :password_confirmation
-
   def new
     @user = User.new
   end
