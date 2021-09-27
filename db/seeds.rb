@@ -13,19 +13,20 @@ for c_i in 1..3
   
   for t_i in 1..5
     test = Test.create!(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i}; author: #{author.id})", category_id: category.id, level: t_i, author_id: author.id)
-    Assessment.create!(test_id: t_i, user_id: user.id)
+    TestPassage.create!(test_id: t_i, user_id: user.id)
 
-    for q_i in 1..5
+    for q_i in 1..3
     question = Question.new(body: "Question #{q_i} (test_id: #{test.id})", test_id: test.id)
     question_answers = []
       a_max = 3
       for a_i in 1..a_max
         corr = a_i == a_max ? true : false
-        question_answers << question.answers.new(body: "Answer #{a_i} (test_id: #{test.id}; question_id: #{q_i})" , question_id: question.id, correct: corr)
+        question_answers << question.answers.new(body: "Answer #{a_i} (test_id: #{test.id}; question_id: #{q_i}; correct: #{corr})" , question_id: question.id, correct: corr)
       end
     question.save!
     question_answers.each {|answer| answer.save!}
     end
   end
 end
+
 

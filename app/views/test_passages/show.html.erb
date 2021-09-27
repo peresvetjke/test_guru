@@ -1,0 +1,3 @@
+<h2>Прохождение теста '<%= @test_passage.test.title %>'</h2> 
+<h3><%= @test_passage.current_question.body %> (Вопрос <%= @test_passage.current_question_order_number %> из <%= @test_passage.test.questions.count %>)</h3>
+<%= render 'form' %>

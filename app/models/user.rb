@@ -1,13 +1,15 @@
 class User < ApplicationRecord
   has_many :issues, class_name: :Test, foreign_key: :author_id
-  has_many :assessments
-  has_many :tests, through: :assessments
+  has_many :test_passages
+  has_many :tests, through: :test_passages
 
   validates :login, :email, presence: true
 
-  scope :test_level, -> (level) { Test.joins(:assessments).where("tests.level = ?", level) }
-
   def test_level(level)
     tests.where(level: level)
+  end
+
+  def test_passage(test)
+    TestPassage.where('test_id = ?', test.id).order(id: :desc).first
   end
 end
