@@ -59,8 +59,6 @@ ru:
       user:
         email: 'Адрес электронной почты'
         login: 'Имя учетной записи'
-        password: 'Пароль'
-        password_confirmation: 'Второй пароль'
     errors:
       messages:
         record_invalid: 'Запись не корректна'
@@ -104,16 +102,9 @@ ru:
         user:
           attributes:
             email:
-              blank: 'не заполнен'
-              taken: 'уже занят'
-              invalid: 'имеет не правильный формат'
+              blank: 'не заполнено'
             login:
               blank: 'не заполнено'
-            password:
-              blank: 'не заполнен'
-            password_confirmation:
-              blank: 'не заполнен'
-              confirmation: 'не совпадает с первым'
 
   #activerecord.errors.models.test.attributes.title.blank
   hello: "Здравствуй, мир!"

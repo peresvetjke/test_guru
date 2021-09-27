@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  
-  root to: 'tests#index'
-
-  get "/signup", to: "users#new"
-  get "/login", to: "sessions#new"
-  post "/sessions", to: "sessions#create"
-  delete "/sessions", to: "sessions#destroy"
-
-  resources :users, only: [:create, :show]
-  # resources :sessions, only: :create
-
   resources :tests do
     member do
       post 'start'
