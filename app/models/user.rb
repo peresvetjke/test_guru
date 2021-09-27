@@ -3,7 +3,10 @@ class User < ApplicationRecord
   has_many :test_passages
   has_many :tests, through: :test_passages
 
-  validates :login, :email, presence: true
+  has_secure_password
+  validates :email, presence: true, uniqueness: true
+  validates_format_of :email, with: /@/
+  validates :password, presence: true
 
   def test_level(level)
     tests.where(level: level)
