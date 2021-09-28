@@ -11,12 +11,7 @@ class SessionsController < ApplicationController
       username = @user.login.present? ? @user.login : @user.email
       flash.notice = "Добро пожаловать, #{username} ! Время приступить к тестам!"
 
-      if cookies[:request_path].present?
-        redirect_to cookies[:request_path] 
-      else
-        redirect_to @user
-      end
-
+      redirect_to cookies[:request_path] || root_path
     else
       redirect_to login_path, notice: "Не корректные данные авторизации!"
     end

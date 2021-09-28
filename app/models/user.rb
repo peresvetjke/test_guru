@@ -4,8 +4,7 @@ class User < ApplicationRecord
   has_many :tests, through: :test_passages
 
   has_secure_password
-  validates :email, presence: true, uniqueness: true
-  validates_format_of :email, with: /@/
+  validates :email, presence: true, uniqueness: true, format: { with: /@/ }
   validates :password, presence: true
 
   def test_level(level)
