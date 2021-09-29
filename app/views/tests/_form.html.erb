@@ -6,7 +6,7 @@
   <%= form.label :level %> <br>
   <%= form.number_field :level %><br>
   <%= form.label :author_id %> <br>
-  <%= form.collection_select :author_id, User.order(:login), :id, :login %> <br>
+  <%= form.collection_select :author_id, User.order(:email), :id, :email %> <br>
   <br>
   <%= form.submit 'Сохранить' %>
 <% end %>
