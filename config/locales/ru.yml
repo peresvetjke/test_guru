@@ -33,9 +33,11 @@ ru:
   devise:
     failure:
       user: 
+        confirmed: 'Учетная запись подтверждена'
         invalid: 'Данные пользователя/пароль не корректны'
         not_found_in_database: 'Пользователь не найден'
         unauthenticated: 'Пожалуйста, выполните авторизацию'
+        unconfirmed: 'Необходимо подтверждение учетной записи'
     registrations:
       user:
         signed_up: 'Вы успешно зарегистрированы'
