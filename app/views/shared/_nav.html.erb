@@ -1,3 +1,14 @@
 <nav>
-  <p><%= link_to 'Список тестов',tests_path %></p>
+  <ul class="nav">
+  <li class="nav_li"><%= link_to 'TestGrinder', {controller: "tests", action: "index"}, class: "active" %></li>
+  <li class="nav_li"><%= link_to 'Список тестов', {controller: "tests", action: "index"}, class: "active" %></li>
+  
+  
+    <% if logged_in? %>
+  <li class="nav_li"><%= link_to 'Выйти', sessions_path, method: :delete %></li>
+    <% else %>
+  <li class="nav_li"><%= link_to "Зарегистрироваться", signup_path, method: :get %></li>
+  <li class="nav_li"><%= link_to "Войти", login_path, method: :get %></li>
+    <% end %> 
 </nav>
+<br>

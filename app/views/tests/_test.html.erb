@@ -10,9 +10,9 @@
                                 data: { confirm: 'Вы действительно хотите удалить запись?' } %></td>
     <td><%= button_to "Начать", start_test_path(test), :method => :post %></td>
 
-<% if @user.test_passage(test).present? && !@user.test_passage(test).completed? %>
-    <td><%= button_to "Продолжить", test_passage_path(@user.test_passage(test)), :method => :get %></td>
-    <td><%= @user.test_passage(test).current_question_order_number %></td>
+<% if current_user.test_passage(test).present? && !current_user.test_passage(test).completed? %>
+    <td><%= button_to "Продолжить", test_passage_path(current_user.test_passage(test)), :method => :get %></td>
+    <td><%= current_user.test_passage(test).current_question_order_number %></td>
 <% else %>
     <td>-</td>
     <td>-</td>
