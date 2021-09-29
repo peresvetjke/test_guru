@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2021_09_28_030111) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "password_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.check_constraint "email LIKE \"%@%\"", name: "emailchk"
   end
 
   add_foreign_key "answers", "questions"
