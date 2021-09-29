@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   root to: 'tests#index'
 
+  devise_for :users
+=begin
   get "/signup", to: "users#new"
   get "/login", to: "sessions#new"
   post "/sessions", to: "sessions#create"
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show]
   # resources :sessions, only: :create
-
+=end
   resources :tests do
     member do
       post 'start'

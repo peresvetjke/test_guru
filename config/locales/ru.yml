@@ -30,6 +30,21 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ru:
+  devise:
+    failure:
+      user: 
+        invalid: 'Данные пользователя/пароль не корректны'
+        not_found_in_database: 'Пользователь не найден'
+        unauthenticated: 'Пожалуйста, выполните авторизацию'
+    registrations:
+      user:
+        signed_up: 'Вы успешно зарегистрированы'
+    sessions:
+      user:
+        signed_in: 'Вы успешно авторизованы'
+  errors:
+    messages:
+      not_saved: 'Запись не была сохранена.'
   validate_errors:
     error:
       one: "Форма содержит %{count} ошибку"
@@ -64,6 +79,7 @@ ru:
     errors:
       messages:
         record_invalid: 'Запись не корректна'
+        not_saved: 'Запись не была сохранена.'
       models:
         test:
           attributes:
@@ -111,6 +127,7 @@ ru:
               blank: 'не заполнено'
             password:
               blank: 'не заполнен'
+              too_short: 'должен содержать минимум 6 сиволов'
             password_confirmation:
               blank: 'не заполнен'
               confirmation: 'не совпадает с первым'

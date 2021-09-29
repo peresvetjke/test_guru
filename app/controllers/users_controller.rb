@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+=begin
   before_action :user_params, only: :create
 
   def new
@@ -25,5 +27,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:login, :email, :password, :password_confirmation)
   end
 
+=end
 
 end
