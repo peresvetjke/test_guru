@@ -3,4 +3,4 @@
 <p>Содержание: <%= @answer.body %></p>
 <p>Ответ верный: <%= @answer.correct ? "Да" : "Нет" %></p>
 
-<%= link_to 'Вернуться к вопросу', question_path(@answer.question) %>
+<p><%= link_to 'Изменить', edit_admin_answer_path(@answer) %> | <%= link_to 'Вернуться к вопросу', admin_question_path(@answer.question) %></p>

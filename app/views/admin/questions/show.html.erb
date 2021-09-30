@@ -1,4 +1,4 @@
-<%= link_to 'Новый ответ', new_question_answer_path(@question) %>
+<%= link_to 'Новый ответ', new_admin_question_answer_path(@question) %>
 
 <h2>Вопрос '<%= @question.body %>'</h2>
 <% if @question.answers.present? %>
@@ -13,9 +13,9 @@
     <tr>
       <td><%= answer.body %></td>
       <td><%= answer.correct ? "Да" : "Нет" %></td>
-      <td><%= link_to 'Просмотреть', answer_path(answer) %></td>
-      <td><%= link_to 'Изменить', edit_answer_path(answer) %></td>
-      <td><%= link_to 'Удалить', answer_path(answer),
+      <td><%= link_to 'Просмотреть', admin_answer_path(answer) %></td>
+      <td><%= link_to 'Изменить', edit_admin_answer_path(answer) %></td>
+      <td><%= link_to 'Удалить', admin_answer_path(answer),
                                   method: :delete,
                                   data: { confirm: 'Вы действительно хотите удалить запись?' } %></td>
     </tr>
@@ -25,5 +25,5 @@
   <p>Ответов пока нет.</p>
 <% end %>
 
-<p> <%= link_to 'Изменить', edit_question_path %> |
-<%= link_to 'Вернуться', test_path(@question.test) %> </p>
+<p> <%= link_to 'Изменить', edit_admin_question_path(@question) %> |
+<%= link_to 'Вернуться', admin_test_path(@question.test) %> </p>

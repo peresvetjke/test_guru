@@ -1,5 +1,5 @@
 <h2>Тест '<%= @test.title %>'</h2>
-<%= link_to 'Новый вопрос', new_test_question_path(@test) %>
+<%= link_to 'Новый вопрос', new_admin_test_question_path(@test) %>
 <% if @test.questions.present? %>
 <h3>Список вопросов:</h3>
   <table>
@@ -12,9 +12,9 @@
     <tr>
       <td><%= question.body %></td>
       <td><%= question.answers.count %></td>
-      <td><%= link_to 'Просмотреть', question_path(question) %></td>
-      <td><%= link_to 'Изменить', edit_question_path(question) %></td>
-      <td><%= link_to 'Удалить', question_path(question),
+      <td><%= link_to 'Просмотреть', admin_question_path(question) %></td>
+      <td><%= link_to 'Изменить', edit_admin_question_path(question) %></td>
+      <td><%= link_to 'Удалить', admin_question_path(question),
                                   method: :delete,
                                   data: { confirm: 'Вы действительно хотите удалить запись?' } %></td>
     </tr>
@@ -25,5 +25,5 @@
 <% end %>
 <br>
 <br><br>
-<%= link_to 'Изменить', edit_test_path %> |
-<%= link_to 'Вернуться', tests_path %>
+<%= link_to 'Изменить', edit_admin_test_path %> |
+<%= link_to 'Вернуться', admin_tests_path %>

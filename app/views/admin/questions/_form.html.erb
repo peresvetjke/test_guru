@@ -1,0 +1,11 @@
+<h2><%= question_header(@question) %></h2>
+<%= render 'shared/errors', resource: @question %>
+
+<%= form_with url: (@question.new_record? ? admin_test_questions_path(@question.test) : admin_question_path(@question)), model: [@test, @question] do |form| %>
+  <%= form.label :body %> <br>
+  <%= form.text_field :body %> <br>
+  
+  <%= form.submit 'Сохранить' %>
+<% end %>
+
+<%= link_to 'Вернуться', admin_test_path(@question.test) %>

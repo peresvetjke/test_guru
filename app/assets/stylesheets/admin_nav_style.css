@@ -1,0 +1,31 @@
+ul.admin_nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: orange;
+}
+
+li.admin_nav_li {
+  float: left;
+}
+
+li.admin_nav_li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.admin_nav_li a:hover {
+  background-color: #111;
+}
+
+li.admin_nav_li_auth a {
+  display: block;
+  color: white;
+  text-align: right;
+  padding: 14px 16px;
+  text-decoration: none;
+}

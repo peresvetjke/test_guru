@@ -15,6 +15,7 @@ class TestPassage < ApplicationRecord
   end
 
   def evaluate_answer(answer_ids)
+    answer_ids = [] if answer_ids.nil?
     self.correct_questions += 1 if self.current_question.answers.correct.pluck(:id).sort == answer_ids.map(&:to_i).sort
   end
 

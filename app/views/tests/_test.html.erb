@@ -3,11 +3,6 @@
     <td><%= test.category.title %></td>
     <td><%= test_level(test) %></td>
     <td><%= test.questions.count %></td>
-    <td><%= link_to 'Просмотреть', test_path(test) %></td>
-    <td><%= link_to 'Изменить', edit_test_path(test) %></td>
-    <td><%= link_to 'Удалить', test_path(test),
-                                method: :delete,
-                                data: { confirm: 'Вы действительно хотите удалить запись?' } %></td>
     <td><%= button_to "Начать", start_test_path(test), :method => :post %></td>
 
 <% if current_user.test_passage(test).present? && !current_user.test_passage(test).completed? %>
