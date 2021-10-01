@@ -1,0 +1,6 @@
+<h2>Вопрос: <%= @answer.question.body %></h2>
+<h3>Ответ:</h3>
+<p>Содержание: <%= @answer.body %></p>
+<p>Ответ верный: <%= @answer.correct ? "Да" : "Нет" %></p>
+
+<p><%= link_to 'Изменить', edit_admin_answer_path(@answer) %> | <%= link_to 'Вернуться к вопросу', admin_question_path(@answer.question) %></p>

@@ -8,11 +8,11 @@
 
 for c_i in 1..3
   category = Category.create!(title: "Category ##{c_i}")
-  author = User.create!(login: "Author ##{c_i}", email: "author_#{c_i}@mail.ru", password: 'xxx', password_confirmation: 'xxx')
-  user = User.create!(login: "User ##{c_i}", email: "user_#{c_i}@mail.ru", password: 'xxx', password_confirmation: 'xxx')
+  admin = User.create!(login: "Admin ##{c_i}", email: "admin#{c_i}@mail.ru", password: 'xxxxxx', type: 'Admin')
+  user = User.create!(login: "User ##{c_i}", email: "user#{c_i}@mail.ru", password: 'xxxxxx')
   
   for t_i in 1..5
-    test = Test.create!(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i}; author: #{author.id})", category_id: category.id, level: t_i, author_id: author.id)
+    test = Test.create!(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i}; author: #{admin.id})", category_id: category.id, level: t_i, author_id: admin.id)
     TestPassage.create!(test_id: t_i, user_id: user.id)
 
     for q_i in 1..3
