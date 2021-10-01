@@ -30,4 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  tests_list: 'Tests list'
+  helpers:
+    select:
+      prompt: "Please select"
+    level:
+      zero: 'Super-easy'
+      one: 'Easy'
+      two: 'Medium'
+      three: 'Hard'
+      other: 'Hardcore'
   hello: "Hello world"

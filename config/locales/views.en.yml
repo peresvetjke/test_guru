@@ -1,0 +1,32 @@
+en:
+  admin:
+    actions: 'Actions'
+    show: 'Show'
+    change: 'Change'
+    delete: 'Delete'
+    confirm: 'Are you sure?'
+    new_test: 'New test'
+    new_question: 'New question'
+    change_test: 'Change test'
+    save: 'Save'
+  shared:
+    back: 'Back'
+    sign_in: 'Sign in'
+    sign_out: 'Sign out'
+    sign_up: 'Sign up'
+    tests_list: 'Tests list'
+    questions_list: 'Questions list'
+  tests:
+    index:
+      heading: "Tests list"
+      title: 'Title'
+      body: 'Body'
+      category: 'Category'
+      level: 'Level'
+      questions_amount: 'Questions amount'
+      answers_amount: 'Answers amount'
+      passage: 'Passage'
+      current_question: 'Current question'
+    test:
+      start: 'Start'
+      continue: 'Continue'

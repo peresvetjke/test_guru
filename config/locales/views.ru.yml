@@ -1,0 +1,32 @@
+ru:
+  admin:
+    actions: 'Действия'
+    show: 'Просмотреть'
+    change: 'Изменить'
+    delete: 'Удалить'
+    confirm: 'Вы уверены?'
+    new_test: 'Новый тест'
+    new_question: 'Новый вопрос'
+    change_test: 'Изменение теста'
+    save: 'Сохранить'
+  shared:
+    back: 'Назад'
+    sign_in: 'Войти'
+    sign_out: 'Выйти'
+    sign_up: 'Зарегистрироваться'
+    tests_list: 'Список тестов'
+    questions_list: 'Список вопросов'
+  tests:
+    index:
+      heading: "Список тестов"
+      title: 'Название'
+      body: 'Содержание'
+      category: 'Категория'
+      level: 'Уровень'
+      questions_amount: 'Кол-во вопросов'
+      answers_amount: 'Кол-во ответов'
+      passage: 'Прохождение'
+      current_question: 'Текущий вопрос'
+    test:
+      start: 'Начать'
+      continue: 'Продолжить'

@@ -1,0 +1,81 @@
+ru:
+  activerecord:
+    attributes:
+      answer:
+        question: 'Вопрос'
+        body: 'Содержание'
+      assessment:
+        test: 'Тест'
+        user: 'Пользователь'
+      category:
+        title: 'Название'
+      test:
+        author: 'Автор'
+        title: 'Название'
+        category: 'Категория'
+        category_id: 'Категория'
+        level: 'Уровень сложности'
+      question:
+        answers: 'Кол-во вопросов'
+        body: 'Содержание'
+        test: 'Тест'
+      user:
+        email: 'Адрес электронной почты'
+        login: 'Имя учетной записи'
+        password: 'Пароль'
+        password_confirmation: 'Второй пароль'
+    errors:
+      messages:
+        record_invalid: 'Запись не корректна'
+        not_saved: 'Запись не была сохранена.'
+      models:
+        test:
+          attributes:
+            title:
+              blank: 'не заполнено'
+            author:
+              required: 'не заполнен'
+            category:
+              required: 'не заполнена'
+            level: 
+              greater_than: 'должен быть больше %{count}'
+              not_an_integer: 'должен быть целым'
+        category:
+          attributes:
+            title:
+              blank: 'не заполнено'
+        question:
+          attributes:
+            body:
+              blank: 'не заполнено'
+            test:
+              required: 'не заполнено'
+            answers:
+              too_short: 'недостаточно (минимальное значение %{count})'
+              too_long: 'превышено (максимальное значение значение %{count})'
+        answer:
+          attributes:
+            question:
+              required: 'не заполнено'
+            body:
+              blank: 'не заполнено'
+        assessment:
+          attributes:
+            test:
+              required: 'не заполнено'
+            user:
+              required: 'не заполнено'
+        user:
+          attributes:
+            email:
+              blank: 'не заполнен'
+              taken: 'уже занят'
+              invalid: 'имеет не правильный формат'
+            login:
+              blank: 'не заполнено'
+            password:
+              blank: 'не заполнен'
+              too_short: 'должен содержать минимум 6 сиволов'
+            password_confirmation:
+              blank: 'не заполнен'
+              confirmation: 'не совпадает с первым'
