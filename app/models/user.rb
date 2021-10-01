@@ -23,4 +23,8 @@ class User < ApplicationRecord
   def test_passage(test)
     TestPassage.where('test_id = ?', test.id).order(id: :desc).first
   end
+
+  def admin?
+    self.type == 'Admin'
+  end
 end

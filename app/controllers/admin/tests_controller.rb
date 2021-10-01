@@ -10,9 +10,9 @@ class Admin::TestsController < Admin::BaseController
   end
 
   def create
-    @test = Test.new(test_params)
-    @test.author = current_user
-
+    @test = current_user.issues.new(test_params)
+    
+    byebug
     if @test.save
       redirect_to admin_test_path(@test)
     else
