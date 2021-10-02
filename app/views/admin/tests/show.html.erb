@@ -1,22 +1,22 @@
 <h2>Тест '<%= @test.title %>'</h2>
-<%= link_to 'Новый вопрос', new_admin_test_question_path(@test) %>
+<%= link_to t('admin.new_question'), new_admin_test_question_path(@test) %>
 <% if @test.questions.present? %>
-<h3>Список вопросов:</h3>
+<h3><%= t('shared.questions_list') %>:</h3>
   <table>
   <tr>
-    <th>Содержание</th>
-    <th>Кол-во ответов</th>
-    <th colspan="3">Действия</th>
+    <th><%= t('tests.index.body') %></th>
+    <th><%= t('tests.index.answers_amount') %></th>
+    <th colspan="3"><%= t('admin.actions') %></th>
   </tr>
   <% @test.questions.each do |question| %>
     <tr>
       <td><%= question.body %></td>
       <td><%= question.answers.count %></td>
-      <td><%= link_to 'Просмотреть', admin_question_path(question) %></td>
-      <td><%= link_to 'Изменить', edit_admin_question_path(question) %></td>
-      <td><%= link_to 'Удалить', admin_question_path(question),
+      <td><%= link_to t('admin.show'), admin_question_path(question) %></td>
+      <td><%= link_to t('admin.change'), edit_admin_question_path(question) %></td>
+      <td><%= link_to t('admin.delete'), admin_question_path(question),
                                   method: :delete,
-                                  data: { confirm: 'Вы действительно хотите удалить запись?' } %></td>
+                                  data: { confirm: t('admin.confirm') } %></td>
     </tr>
   <% end %>
   </table>
@@ -25,5 +25,5 @@
 <% end %>
 <br>
 <br><br>
-<%= link_to 'Изменить', edit_admin_test_path %> |
-<%= link_to 'Вернуться', admin_tests_path %>
+<%= link_to t('admin.change'), edit_admin_test_path %> |
+<%= link_to t('shared.back'), admin_tests_path %>

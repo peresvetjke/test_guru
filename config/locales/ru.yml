@@ -30,160 +30,24 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ru:
-ru:
-  devise:
-    confirmations:
-      confirmed: "Ваша учётная запись успешно подтверждена."
-      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
-      send_paranoid_instructions: "Если ваш адрес email есть в нашей базе данных, то в течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
-    failure:
-      already_authenticated: "Вы уже вошли в систему."
-      inactive: "Ваша учётная запись ещё не активирована."
-      invalid: "Неверный %{authentication_keys} или пароль."
-      locked: "Ваша учётная запись заблокирована."
-      last_attempt: "У Вас осталась еще одна попытка ввести пароль до блокировки."
-      not_found_in_database: "Неверный %{authentication_keys} или пароль."
-      timeout: "Ваш сеанс закончился. Пожалуйста, войдите в систему снова."
-      unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
-      unconfirmed: "Вы должны подтвердить вашу учётную запись."
-    mailer:
-      confirmation_instructions:
-        subject: "Инструкции по подтверждению учётной записи."
-      reset_password_instructions:
-        subject: "Инструкции по восстановлению пароля."
-      unlock_instructions:
-        subject: "Инструкции по разблокировке учётной записи."
-      email_changed:
-        subject: "Еmail адрес был изменён."
-      password_change:
-        subject: "Пароль был изменён."
-    omniauth_callbacks:
-      failure: "Вы не можете войти в систему с учётной записью из %{kind}, так как \"%{reason}\"."
-      success: "Вход в систему выполнен с учётной записью из %{kind}."
-    passwords:
-      no_token: "Эта страница доступна только при переходе с email для сброса пароля. Если Вы перешли по ссылке из письма, пожалуйста, убедитесь, что вы использовали полный URL."
-      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по восстановлению вашего пароля."
-      send_paranoid_instructions: "Если ваш адрес email есть в нашей базе данных, то в течение нескольких минут Вы получите письмо с инструкциями по восстановлению вашего пароля."
-      updated: "Ваш пароль успешно изменён. Теперь вы вошли в систему."
-      updated_not_active: "Пароль успешно изменён."
-    registrations:
-      destroyed: "До свидания! Ваша учётная запись успешно удалена. Надеемся снова увидеть вас."
-      signed_up: "Добро пожаловать! Вы успешно зарегистрировались."
-      signed_up_but_inactive: "Вы успешно зарегистрировались. Тем не менее, вы не можете войти, потому что ваша учетная запись ещё не активирована."
-      signed_up_but_locked: "Вы успешно зарегистрировались. Тем не менее, вы не можете войти, потому что ваша учетная запись заблокирована."
-      signed_up_but_unconfirmed: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
-      update_needs_confirmation: "Ваш аккаунт успешно обновлен, но необходимо подтвердить Ваш новый адрес email. Пожалуйста, проверьте свою электронную почту и нажмите на ссылку \"Подтвердить\", чтобы завершить обновления email."
-      updated: "Ваша учётная запись успешно изменена."
-      updated_but_not_signed_in: "Ваш аккаунт успешно изменен, но так как ваш пароль изменился, нужно войти снова."
-    sessions:
-      signed_in: "Вход в систему выполнен."
-      signed_out: "Выход из системы выполнен."
-      already_signed_out: "Выход из системы выполнен."
-    unlocks:
-      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по разблокировке вашей учётной записи."
-      send_paranoid_instructions: "Если ваша учётная запись существует, то в течение нескольких минут вы получите письмо с инструкциями по её разблокировке."
-      unlocked: "Ваша учётная запись разблокирована. Теперь вы вошли в систему."
-  errors:
-    messages:
-      already_confirmed: "уже подтверждена. Пожалуйста, попробуйте войти в систему"
-      confirmation_period_expired: "должен быть подтвержден в течении %{period}, пожалуйста, запросите подтверждение ещё раз"
-      expired: "устарела. Пожалуйста, запросите новую"
-      not_found: "не найдена"
-      not_locked: "не заблокирована"
-      not_saved:
-        one: "%{resource}: сохранение не удалось из-за %{count} ошибки"
-        few: "%{resource}: сохранение не удалось из-за %{count} ошибок"
-        many: "%{resource}: сохранение не удалось из-за %{count} ошибок"
-        other: "%{resource}: сохранение не удалось из-за %{count} ошибки"
   errors:
     messages:
       not_saved: 'Запись не была сохранена.'
+  helpers:
+    select:
+      prompt: "Выберите значение"
+    level:
+      zero: 'Очень простой'
+      one: 'Легкий'
+      two: 'Средний'
+      three: 'Сложный'
+      other: 'Хардкор'
   validate_errors:
     error:
       one: "Форма содержит %{count} ошибку"
       few: "Форма содержит %{count} ошибки"
       many: "Форма содержит %{count} ошибок"
       other: "Форма содержит %{count} ошибок"
-  activerecord:
-    attributes:
-      answer:
-        question: 'Вопрос'
-        body: 'Содержание'
-      assessment:
-        test: 'Тест'
-        user: 'Пользователь'
-      category:
-        title: 'Название'
-      test:
-        author: 'Автор'
-        title: 'Название'
-        category: 'Категория'
-        category_id: 'Категория'
-        level: 'Уровень сложности'
-      question:
-        answers: 'Кол-во вопросов'
-        body: 'Содержание'
-        test: 'Тест'
-      user:
-        email: 'Адрес электронной почты'
-        login: 'Имя учетной записи'
-        password: 'Пароль'
-        password_confirmation: 'Второй пароль'
-    errors:
-      messages:
-        record_invalid: 'Запись не корректна'
-        not_saved: 'Запись не была сохранена.'
-      models:
-        test:
-          attributes:
-            title:
-              blank: 'не заполнено'
-            author:
-              required: 'не заполнен'
-            category:
-              required: 'не заполнена'
-            level: 
-              greater_than: 'должен быть больше %{count}'
-              not_an_integer: 'должен быть целым'
-        category:
-          attributes:
-            title:
-              blank: 'не заполнено'
-        question:
-          attributes:
-            body:
-              blank: 'не заполнено'
-            test:
-              required: 'не заполнено'
-            answers:
-              too_short: 'недостаточно (минимальное значение %{count})'
-              too_long: 'превышено (максимальное значение значение %{count})'
-        answer:
-          attributes:
-            question:
-              required: 'не заполнено'
-            body:
-              blank: 'не заполнено'
-        assessment:
-          attributes:
-            test:
-              required: 'не заполнено'
-            user:
-              required: 'не заполнено'
-        user:
-          attributes:
-            email:
-              blank: 'не заполнен'
-              taken: 'уже занят'
-              invalid: 'имеет не правильный формат'
-            login:
-              blank: 'не заполнено'
-            password:
-              blank: 'не заполнен'
-              too_short: 'должен содержать минимум 6 сиволов'
-            password_confirmation:
-              blank: 'не заполнен'
-              confirmation: 'не совпадает с первым'
 
   #activerecord.errors.models.test.attributes.title.blank
   hello: "Здравствуй, мир!"

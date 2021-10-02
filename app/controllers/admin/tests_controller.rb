@@ -12,7 +12,6 @@ class Admin::TestsController < Admin::BaseController
   def create
     @test = current_user.issues.new(test_params)
     
-    byebug
     if @test.save
       redirect_to admin_test_path(@test)
     else

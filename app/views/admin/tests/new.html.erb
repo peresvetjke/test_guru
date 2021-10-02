@@ -1,5 +1,5 @@
-<h2>Новый тест</h2>
+<h2><%= t('admin.new_test') %></h2>
 <%= render 'shared/errors', resource: @test %>
 <%= render 'form' %>
 
-<%= link_to 'Вернуться', admin_tests_path %>
+<%= link_to t('shared.back'), admin_tests_path %>
