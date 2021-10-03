@@ -1,10 +1,13 @@
+<div class="form-check">
+
 <%= form_with url: (@test.new_record? ? admin_tests_path : admin_test_path(@test)), model: @test do |form| %>
-    <%= form.label :title %> <br>
+    <%= form.label :title, class: 'form-check-label' %> <br>
     <%= form.text_field :title %> <br>
-    <%= form.label :category_id %> <br>
-    <%= form.collection_select :category_id, Category.order(:name), :id, :title, prompt: true %> <br>
-    <%= form.label :level %> <br>
+    <%= form.label :category_id, class: 'form-check-label' %> <br>
+    <%= form.collection_select :category_id, Category.order(:name), :id, :title, prompt: true, class: 'form-check-input' %> <br>
+    <%= form.label :level, class: 'form-check-label' %> <br>
     <%= form.number_field :level %><br>
     <br>
-    <%= form.submit t('admin.save') %>
+    <%= form.submit t('admin.save'), class: 'btn btn-primary btn-sm' %>
 <% end %>
+</div>
