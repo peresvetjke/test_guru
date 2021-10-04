@@ -22,6 +22,11 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Bootstrap
+gem 'bootstrap', '~> 5.1'
+# jQuery
+gem 'jquery-rails'
+
 # Authentication
 gem 'devise'
 gem 'devise-i18n'
@@ -35,6 +40,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "letter_opener"
 end
 
 group :development do

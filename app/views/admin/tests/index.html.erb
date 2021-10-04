@@ -1,7 +1,8 @@
+  <div class="container-fluid">
   <%= link_to t('admin.new_test'), new_admin_test_path %>
 
   <h2><%= t('tests.index.heading') %></h2>
-  <table>
+  <table  class='table table-bordered'>
   <tr>
     <th><%= t('tests.index.title') %></th>
     <th><%= t('tests.index.category') %></th>
@@ -12,3 +13,4 @@
   <%= render @tests %>
   </table>
   <br>
+</div>
