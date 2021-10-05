@@ -7,13 +7,14 @@
     <%= b.label class: 'form-check-label' %>
   </p>
   <% end %>
-  <br><br>
+  
 
-  <%= form.submit 'Отправить', class: 'btn btn-primary btn-sm' %>
+  <%= form.submit t('shared.send'), class: 'btn btn-primary btn-sm' %>
 
 <% end %>
 
-<%= button_to 'Добавить гист', create_gist_test_passage_path(@test_passage) %>
+<br>
+<%= button_to t('gists.create_gist'), create_gist_test_passage_path(@test_passage), class:"btn btn-secondary btn-sm" %>
 
 </div>
 

@@ -11,6 +11,7 @@ ru:
     save: 'Сохранить'
   shared:
     back: 'Назад'
+    send: 'Отправить'
     sign_in: 'Войти'
     sign_out: 'Выйти'
     sign_up: 'Зарегистрироваться'
@@ -18,6 +19,7 @@ ru:
     questions_list: 'Список вопросов'
     user: 'Пользователь'
   gists:
+    create_gist: 'Создать gist'
     gists_list: 'Список Gist'
     successfully_created: 'Gist был успешно создан'
     link_to_gist: 'Ссылка на Gist'
