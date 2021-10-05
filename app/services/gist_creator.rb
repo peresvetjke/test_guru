@@ -2,7 +2,7 @@ class GistCreator
   attr_reader :question
 
   def initialize(question, client = nil)
-    @client = client || Octokit::Client.new(:access_token => ENV['github_token'])
+    @client = client || Octokit::Client.new(:access_token => ENV['GITHUB_TOKEN'])
     @question = question
   end
 

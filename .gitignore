@@ -40,4 +40,4 @@ yarn-debug.log*
 .yarn-integrity
 
 # Ignore github token
-/config/set_github_token.rb
+/set_github_token.env
