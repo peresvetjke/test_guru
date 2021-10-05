@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 
     resources :gists, only: :index
   end
-
-  resources :questions, only: :show
   
   resources :tests do
     member do
