@@ -10,8 +10,12 @@ Rails.application.routes.draw do
         resources :answers, shallow: true
       end
     end
+
+    resources :gists, only: :index
   end
 
+  resources :questions, only: :show
+  
   resources :tests do
     member do
       post 'start'
@@ -20,6 +24,7 @@ Rails.application.routes.draw do
     resources :test_passages, shallow: true do
       member do
         get 'result'
+        post 'create_gist'
       end
     end
 

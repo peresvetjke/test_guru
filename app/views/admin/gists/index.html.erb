@@ -1,0 +1,8 @@
+<h2><%= t('gists.gists_list') %></h2>
+
+<table class='table table-bordered'>
+  <th><%= t('activerecord.attributes.answer.question') %></th>
+  <th><%= t('gists.link_to_gist') %></th>
+  <th><%= t('shared.user') %></th>
+  <%= render 'gist' %>
+</table>

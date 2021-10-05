@@ -16,6 +16,11 @@ en:
     sign_up: 'Sign up'
     tests_list: 'Tests list'
     questions_list: 'Questions list'
+    user: 'User'
+  gists:
+    gists_list: 'Gists list'
+    successfully_created: 'Gist was successfully created'
+    link_to_gist: 'Link to Gists'
   tests:
     index:
       heading: "Tests list"

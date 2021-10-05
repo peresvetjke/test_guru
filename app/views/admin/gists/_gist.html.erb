@@ -1,0 +1,7 @@
+<% @gists.each do |gist| %>
+<tr> 
+  <td><%= link_to "#{gist.question.body[0..24]}", admin_question_path(gist.question) %></td>
+  <td><%= link_to "#{gist.github_gist_id}", "#{gist_url(gist.github_gist_id)}" %></td>
+  <td><%= gist.user.email %></td>
+</tr>
+<% end %>

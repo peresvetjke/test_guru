@@ -1,0 +1,10 @@
+<h2>Вопрос '<%= @question.body %>'</h2>
+<% if @question.answers.present? %>
+  <table>
+  
+  <th>Ответы:</th>
+  <% @question.answers.each do |answer| %>
+    <tr> <td><%= answer.body %></td> </tr>
+  <% end %>
+  
+<% end %>
