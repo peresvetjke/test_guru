@@ -20,6 +20,7 @@ en:
     user: 'User'
   gists:
     create_gist: 'Create gist'
+    error_occured: 'Error occured during gist creation'
     gists_list: 'Gists list'
     successfully_created: 'Gist was successfully created'
     link_to_gist: 'Link to Gists'

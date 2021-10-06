@@ -18,6 +18,10 @@ class GistCreator
         "public": true
       })
 
-    response[:id]
+    success? ? response[:id] : false
+  end
+
+  def success?
+    !(@client.last_response.nil? || [304, 403, 404, 422].include?(@client.last_response.status))
   end
 end
