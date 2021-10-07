@@ -11,11 +11,19 @@ en:
     save: 'Save'
   shared:
     back: 'Back'
+    send: 'Send'
     sign_in: 'Sign in'
     sign_out: 'Sign out'
     sign_up: 'Sign up'
     tests_list: 'Tests list'
     questions_list: 'Questions list'
+    user: 'User'
+  gists:
+    create_gist: 'Create gist'
+    error_occured: 'Error occured during gist creation'
+    gists_list: 'Gists list'
+    successfully_created: 'Gist was successfully created'
+    link_to_gist: 'Link to Gists'
   tests:
     index:
       heading: "Tests list"

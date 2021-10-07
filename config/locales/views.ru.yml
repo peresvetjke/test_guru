@@ -11,11 +11,19 @@ ru:
     save: 'Сохранить'
   shared:
     back: 'Назад'
+    send: 'Отправить'
     sign_in: 'Войти'
     sign_out: 'Выйти'
     sign_up: 'Зарегистрироваться'
     tests_list: 'Список тестов'
     questions_list: 'Список вопросов'
+    user: 'Пользователь'
+  gists:
+    create_gist: 'Создать gist'
+    error_occured: 'При создании gist возникла ошибка'
+    gists_list: 'Список Gist'
+    successfully_created: 'Gist был успешно создан'
+    link_to_gist: 'Ссылка на Gist'
   tests:
     index:
       heading: "Список тестов"
