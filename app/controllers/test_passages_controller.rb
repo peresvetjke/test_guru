@@ -20,11 +20,11 @@ class TestPassagesController < ApplicationController
   end
 
   def create_gist
-    github_gist = GistCreator.new(@test_passage.current_question).call
-    gist = current_user.gists.new(question_id: @test_passage.current_question.id, github_gist_id: github_gist) if github_gist
-
-    if gist && gist.save
-      flash[:notice] = "#{ t('gists.successfully_created') } (#{view_context.link_to github_gist, Admin::GistsController.helpers.gist_url(github_gist)})"
+    gist_creator = GistCreator.new(@test_passage.current_question)
+    gist_id = gist_creator.call
+    
+    if gist_creator.success? && current_user.gists.create(question_id: @test_passage.current_question.id, github_gist_id: gist_id) 
+      flash[:notice] = "#{ t('gists.successfully_created') } (#{view_context.link_to gist_id, Admin::GistsController.helpers.gist_url(gist_id)})"
     else
       flash[:notice] = t('gists.error_occured')
     end
