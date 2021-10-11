@@ -17,8 +17,6 @@ function sortRowsByTitle() {
     sortedRows.push(rows[i]);
   }
 
-  var sortedTable = document.createElement('table');
-
   if (this.querySelector('.octicon-arrow-up').classList.contains('hide')) {
     sortedRows.sort(compareRowsAsc);
     this.querySelector('.octicon-arrow-up').classList.remove('hide');
@@ -29,16 +27,13 @@ function sortRowsByTitle() {
     this.querySelector('.octicon-arrow-up').classList.add('hide');
   }
 
-  var sortedTable = document.createElement('table');
-
-  sortedTable.classList.add('table');
-  sortedTable.appendChild(rows[0]);
-
-  for (var i = 0; i < sortedRows.length; i++) {
-    sortedTable.appendChild(sortedRows[i]);
+  for (i = 1; i < rows.length; i++) {
+    table.deleteRow(1)
   }
 
-  table.parentNode.replaceChild(sortedTable, table);
+  for (var i = 0; i < sortedRows.length; i++) {
+    table.appendChild(sortedRows[i]);
+  }
 
   function compareRows(row1, row2) {
     var testTitle1 = row1.querySelector('td').textContent;
