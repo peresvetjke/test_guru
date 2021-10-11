@@ -34,6 +34,9 @@ gem 'devise-i18n'
 # GutHub API
 gem "octokit", "~> 4.0"
 
+# GitHub Icons
+gem 'octicons_helper'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

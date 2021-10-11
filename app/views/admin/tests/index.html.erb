@@ -4,7 +4,10 @@
   <h2><%= t('tests.index.heading') %></h2>
   <table  class='table table-bordered'>
   <tr>
-    <th><%= t('tests.index.title') %></th>
+    <th class="sort-by-title pointer"><%= t('tests.index.title') %>
+      <%= octicon 'arrow-up', class: 'text-success' %>
+      <%= octicon 'arrow-down', class: 'text-success' %>
+    </th>
     <th><%= t('tests.index.category') %></th>
     <th><%= t('tests.index.level') %></th>
     <th><%= t('tests.index.questions_amount') %></th>
