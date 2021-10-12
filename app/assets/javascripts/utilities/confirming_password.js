@@ -19,15 +19,18 @@ function check_match() {
   var failure_sign = document.querySelector('.octicon-x');
   var confirm_fail_message = document.querySelector('#confirm_fail_message');
 
-  if (confirmation_pw.value === '') {
+  if (confirmation_pw.value === '' || pw.value === '') {
     success_sign.classList.add('hide');
     failure_sign.classList.add('hide');
     confirm_fail_message.classList.add('hide');
-  } else if (confirmation_pw.value === pw.value) {
+    return
+  }
+
+  if (confirmation_pw.value === pw.value) {    
     success_sign.classList.remove('hide');
     failure_sign.classList.add('hide');  
     confirm_fail_message.classList.add('hide');
-  } else if (confirmation_pw.value !== pw.value) {
+  } else {
     success_sign.classList.add('hide');
     failure_sign.classList.remove('hide');  
     confirm_fail_message.classList.remove('hide');
