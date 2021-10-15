@@ -6,8 +6,9 @@
               class: 'form-inline hide',
               data: { test_id: test.id },
               method: :patch do |form| %>
-    <%= form.text_field "test[title]", value: test.title %> <br>
-    <br>
+    
+    <%= form.text_field test.title == '' ? "title" : "test[title]", value: test.title %> 
+    <br><br>
     <%= form.submit t('admin.save'), class: 'btn btn-primary btn-sm' %>
 <% end %>
 </div>

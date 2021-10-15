@@ -7,8 +7,12 @@ document.addEventListener('turbolinks:load', function() {
     }
   }
 
-  var errors = document.querySelector('.errors');
+  var errorsResourceId = document.querySelector('.errors').dataset.resource;
   
+  if (!!errorsResourceId) {
+    console.log('Im in if (!!errorsResourceId) {')
+    errorsHandler(errorsResourceId);
+  }
 })
 
 function formInlineLinkHandler(event) {
@@ -19,19 +23,20 @@ function formInlineLinkHandler(event) {
   formInlineHandler(testId);
 }
 
-function formInlineHandler(testId, errors = null) {
-  var link = document.querySelector('.form-inline-link[data-test-id="' + testId + '"]');
+function errorsHandler(testId = errorsResourceId) {
+  console.log('im in errors handler!')
   var testTitle = document.querySelector('.test-title[data-test-id="' + testId + '"]');
   var formInline = document.querySelector('.form-inline[data-test-id="' + testId + '"]');
 
-  console.log(errors);
-  if (!!errors) {
-    console.log('im in if errors');
-    testTitle.classList.remove('hide');
-    formInline.classList.add('hide');
-    link.textContent = 'Cancel';
-    return;
-  }
+  testTitle.classList.add('hide');
+  formInline.classList.remove('hide');
+  link.textContent = 'Cancel';
+}
+
+function formInlineHandler(testId) {
+  var link = document.querySelector('.form-inline-link[data-test-id="' + testId + '"]');
+  var testTitle = document.querySelector('.test-title[data-test-id="' + testId + '"]');
+  var formInline = document.querySelector('.form-inline[data-test-id="' + testId + '"]');
 
   if (formInline.classList.contains('hide')) {
     testTitle.classList.add('hide');
@@ -43,3 +48,13 @@ function formInlineHandler(testId, errors = null) {
     link.textContent = 'Edit';
   }
 }
+
+// function showFormInLine
+  
+//   testTitle.classList.remove('hide');
+//   formInline.classList.add('hide');
+//   link.textContent = 'Cancel';
+//   return;
+//   }
+
+// function hideFormInLine
