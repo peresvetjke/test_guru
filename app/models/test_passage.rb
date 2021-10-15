@@ -32,8 +32,30 @@ class TestPassage < ApplicationRecord
     self.test.questions.pluck(:id).sort.index(self.current_question.id) + 1
   end
 
+  def previous_question_order_number
+    return self.current_question_order_number if self.current_question_order_number == 1
+    return self.test.questions.count if self.completed?
+    
+    self.current_question_order_number - 1 
+  end
+
   def completed?
     current_question.nil?
+  end
+
+  def progress(previous = false)
+    question_order_number = previous ? previous_question_order_number : current_question_order_number
+
+    if self.completed? && previous == false
+      100
+    else
+      (((question_order_number - 1) / self.test.questions.count.to_f) * 100).ceil
+    end
+  end
+
+  def prev_progress
+    prev_question_order_number = self.current_question_order_number - 1
+    (((prev_question_order_number - 1) / self.test.questions.count.to_f) * 100).ceil 
   end
 
   private

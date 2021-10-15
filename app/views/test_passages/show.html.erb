@@ -1,4 +1,6 @@
-<div class='container-fluid'>
+
+
+<%= render 'progress_bar' %>
 
 <h2>Прохождение теста '<%= @test_passage.test.title %>'</h2> 
 <br>
@@ -7,4 +9,3 @@
 <%= render 'form' %>
 <br>
 <%= link_to 'Перейти к списку тестов', tests_path %>
-</div>
