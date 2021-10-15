@@ -53,11 +53,6 @@ class TestPassage < ApplicationRecord
     end
   end
 
-  def prev_progress
-    prev_question_order_number = self.current_question_order_number - 1
-    (((prev_question_order_number - 1) / self.test.questions.count.to_f) * 100).ceil 
-  end
-
   private
 
   def after_initialize_set_current_question

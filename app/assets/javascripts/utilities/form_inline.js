@@ -10,7 +10,6 @@ document.addEventListener('turbolinks:load', function() {
   var errorsResourceId = document.querySelector('.errors').dataset.resource;
   
   if (!!errorsResourceId) {
-    console.log('Im in if (!!errorsResourceId) {')
     errorsHandler(errorsResourceId);
   }
 })
@@ -24,7 +23,6 @@ function formInlineLinkHandler(event) {
 }
 
 function errorsHandler(testId = errorsResourceId) {
-  console.log('im in errors handler!')
   var testTitle = document.querySelector('.test-title[data-test-id="' + testId + '"]');
   var formInline = document.querySelector('.form-inline[data-test-id="' + testId + '"]');
 
@@ -48,13 +46,3 @@ function formInlineHandler(testId) {
     link.textContent = 'Edit';
   }
 }
-
-// function showFormInLine
-  
-//   testTitle.classList.remove('hide');
-//   formInline.classList.add('hide');
-//   link.textContent = 'Cancel';
-//   return;
-//   }
-
-// function hideFormInLine

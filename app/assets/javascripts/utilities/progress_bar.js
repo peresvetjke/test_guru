@@ -1,13 +1,10 @@
 document.addEventListener('turbolinks:load', function() {   
   var elem = document.getElementById("test-bar");
-
-  var prevProgress = parseInt(elem.dataset.prevProgress);
+  var width = parseInt(elem.dataset.prevProgress);
   var progress = parseInt(elem.dataset.progress);
 
-  elem.style.width = prevProgress + "%";
-  elem.innerHTML = prevProgress  + "%";
-
-  var width = prevProgress;
+  elem.style.width = width + "%";
+  elem.innerHTML = width  + "%";
 
   var id = setInterval(frame, 10);
   
