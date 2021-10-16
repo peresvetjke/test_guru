@@ -14,6 +14,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "../../assets/javascripts/utilities/sorting.js"
 import "../../assets/javascripts/utilities/confirming_password.js"
+import "../../assets/javascripts/utilities/form_inline.js"
+import "../../assets/javascripts/utilities/progress_bar.js"
 
 Rails.start()
 Turbolinks.start()
