@@ -29,4 +29,8 @@ Rails.application.routes.draw do
     end
 
   end
+
+  # Contact message
+  get '/contact_messages/new', to: "contact_messages#new"
+  post '/contact_messages/create', to: "contact_messages#create"
 end

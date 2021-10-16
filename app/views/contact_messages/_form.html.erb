@@ -1,0 +1,15 @@
+<div class="form-check">
+
+<%= form_with url: contact_messages_create_path, model: @contact_message, method: :post do |form| %>
+<%= form.label "contact_message[email]", "From" %>
+<%= form.text_field "contact_message[email]", value: current_user.email %> <br>
+<%= form.label "contact_message[subject]", "Subject" %>
+<%= form.text_area "contact_message[subject]" %> <br>
+<%= form.label "contact_message[content]", "Content" %>
+<%= form.text_area "contact_message[content]" %>
+
+<%= form.submit "Send" %>
+
+<% end %>
+
+</div>
