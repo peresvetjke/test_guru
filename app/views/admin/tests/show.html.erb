@@ -2,7 +2,7 @@
 <%= link_to t('admin.new_question'), new_admin_test_question_path(@test) %>
 <% if @test.questions.present? %>
 <h3><%= t('shared.questions_list') %>:</h3>
-  <table>
+  <table class='table table-bordered'>
   <tr>
     <th><%= t('tests.index.body') %></th>
     <th><%= t('tests.index.answers_amount') %></th>

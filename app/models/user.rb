@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :issues, class_name: :Test, foreign_key: :author_id
   has_many :test_passages
   has_many :tests, through: :test_passages
+  has_many :contact_messages
 
 #  has_secure_password
   validates :email, presence: true, uniqueness: true, format: { with: /@/ }

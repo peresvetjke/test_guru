@@ -30,7 +30,5 @@ Rails.application.routes.draw do
 
   end
 
-  # Contact message
-  get '/contact_messages/new', to: "contact_messages#new"
-  post '/contact_messages/create', to: "contact_messages#create"
+  resources :contact_messages, only: %i[new create]
 end

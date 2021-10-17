@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_16_050600) do
+ActiveRecord::Schema.define(version: 2021_10_17_144820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_10_16_050600) do
   create_table "answers", force: :cascade do |t|
     t.text "body", null: false
     t.boolean "correct", default: false
-    t.integer "question_id", null: false
+    t.bigint "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -30,9 +30,19 @@ ActiveRecord::Schema.define(version: 2021_10_16_050600) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "contact_messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "subject", null: false
+    t.text "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "email", null: false
+    t.index ["user_id"], name: "index_contact_messages_on_user_id"
+  end
+
   create_table "gists", force: :cascade do |t|
-    t.integer "question_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
     t.text "github_gist_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -42,17 +52,17 @@ ActiveRecord::Schema.define(version: 2021_10_16_050600) do
 
   create_table "questions", force: :cascade do |t|
     t.text "body", null: false
-    t.integer "test_id", null: false
+    t.bigint "test_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
   create_table "test_passages", force: :cascade do |t|
-    t.integer "test_id", null: false
-    t.integer "user_id", null: false
-    t.integer "questions_id"
-    t.integer "current_question_id"
+    t.bigint "test_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "questions_id"
+    t.bigint "current_question_id"
     t.integer "correct_questions", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -66,10 +76,10 @@ ActiveRecord::Schema.define(version: 2021_10_16_050600) do
     t.text "title", null: false
     t.integer "level", default: 1
     t.text "reference"
-    t.integer "category_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "author_id", null: false
+    t.bigint "author_id", null: false
     t.index ["author_id"], name: "index_tests_on_author_id"
     t.index ["category_id"], name: "index_tests_on_category_id"
     t.index ["title", "level"], name: "index_tests_on_title_and_level", unique: true
@@ -96,6 +106,7 @@ ActiveRecord::Schema.define(version: 2021_10_16_050600) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "contact_messages", "users"
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"
   add_foreign_key "questions", "tests"

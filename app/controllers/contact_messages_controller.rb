@@ -5,8 +5,9 @@ class ContactMessagesController < ApplicationController
   end
 
   def create
-    @contact_message = ContactMessage.new(contact_message_params)
-    if @contact_message.valid?
+    byebug
+    @contact_message = current_user.contact_messages.new(contact_message_params)
+    if @contact_message.save
       UserMailer.with(contact_message: @contact_message).contact_email.deliver_now
       redirect_to root_path, notice: "Message sent! Thank you for contacting us."
     else
