@@ -5,4 +5,8 @@ module TestsHelper
   def test_level(test)
     TEST_LEVEL.keys.include?(test.level) ? t("helpers.level.#{TEST_LEVEL[test.level]}") : t("helpers.level.other")
   end
+
+  def publication_status(test)
+    test.published? ? t('tests.test.published_true') : t('tests.test.published_false')
+  end
 end

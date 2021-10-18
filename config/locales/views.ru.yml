@@ -31,6 +31,7 @@ ru:
       body: 'Содержание'
       category: 'Категория'
       level: 'Уровень'
+      published: 'Статус публикации'
       questions_amount: 'Кол-во вопросов'
       answers_amount: 'Кол-во ответов'
       passage: 'Прохождение'
@@ -38,3 +39,5 @@ ru:
     test:
       start: 'Начать'
       continue: 'Продолжить'
+      published_true: 'Опубликован'
+      published_false: 'Не опубликован'

@@ -2,4 +2,5 @@
 <%= render 'shared/errors', resource: @test %>
 <%= render 'form' %>
 
+<%= link_to t('admin.show'), admin_test_path(@test) %>
 <%= link_to t('shared.back'), admin_tests_path %>

@@ -31,6 +31,7 @@ en:
       body: 'Body'
       category: 'Category'
       level: 'Level'
+      published: 'Publication status'
       questions_amount: 'Questions amount'
       answers_amount: 'Answers amount'
       passage: 'Passage'
@@ -38,3 +39,5 @@ en:
     test:
       start: 'Start'
       continue: 'Continue'
+      published_true: 'Published'
+      published_false: 'Not published'

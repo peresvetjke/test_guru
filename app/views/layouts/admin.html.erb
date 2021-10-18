@@ -22,8 +22,8 @@
 
     <%= render 'shared/admin_nav' %>
     <%= render 'shared/flash' %>
-    <%= yield %>
+    <div class='row container-sm ms-2'><%= yield %></div>
     <%= render 'shared/footer_offset' %>
-    <div class='row card-footer fixed-bottom' style="background-color: #c6f2fb;"><%= render 'shared/footer' %></div>
+    <%= render 'shared/footer' %>
   </body>
 </html>

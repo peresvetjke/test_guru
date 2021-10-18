@@ -1,8 +1,12 @@
 <h2>Тест '<%= @test.title %>'</h2>
-<%= link_to t('admin.new_question'), new_admin_test_question_path(@test) %>
-<% if @test.questions.present? %>
-<h3><%= t('shared.questions_list') %>:</h3>
-  <table>
+
+<p><strong><%= t('activerecord.attributes.test.category') %>: </strong><%= @test.category.title %></p>
+<p><strong><%= t('activerecord.attributes.test.level') %>: </strong><%= @test.level %></p>
+<p><strong><%= t('activerecord.attributes.test.published') %>: </strong><%= publication_status(@test) %></p>
+
+<h4><%= t('shared.questions_list') %>:</h4>
+<% if @test.questions.present? %><br><br>
+  <table class='table table-bordered'>
   <tr>
     <th><%= t('tests.index.body') %></th>
     <th><%= t('tests.index.answers_amount') %></th>
@@ -23,7 +27,9 @@
 <% else %>
   <p>Вопросов пока нет.</p>
 <% end %>
+<%= link_to t('admin.new_question'), new_admin_test_question_path(@test) %>
+
 <br>
-<br><br>
-<%= link_to t('admin.change'), edit_admin_test_path %> |
+
+<%= link_to t('admin.change'), edit_admin_test_path %>
 <%= link_to t('shared.back'), admin_tests_path %>

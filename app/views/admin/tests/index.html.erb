@@ -4,12 +4,13 @@
   <%= link_to t('admin.new_test'), new_admin_test_path %>
 
   <h2><%= t('tests.index.heading') %></h2>
-  <table  class='table table-bordered'>
+  <table class='table table-bordered'>
   <tr>
     <th class="sort-by-title pointer"><%= t('tests.index.title') %>
-      <%= octicon 'arrow-up', class: 'text-success' %>
+      <%= octicon 'arrow-up',   class: 'text-success' %>
       <%= octicon 'arrow-down', class: 'text-success' %>
     </th>
+    <th><%= t('activerecord.attributes.test.published') %></th>
     <th><%= t('tests.index.category') %></th>
     <th><%= t('tests.index.level') %></th>
     <th><%= t('tests.index.questions_amount') %></th>

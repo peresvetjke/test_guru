@@ -1,0 +1,6 @@
+Received message from user
+==========================
+
+Subject: <%= @contact_message.subject %>
+
+Content: <%= @contact_message.content %>

@@ -27,6 +27,6 @@ module TestGuru
 
     Bundler.require(*Rails.groups)
     # Dotenv::Railtie.load
-    Dotenv.load('set_github_token.env')
+    # Dotenv.load('set_github_token.env')
   end
 end

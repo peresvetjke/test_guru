@@ -1,9 +1,13 @@
+<div class='row card-footer fixed-bottom' style="background-color: #c6f2fb;">
+
 <footer>
   <p>
   <%= github_url("peresvetjke", "test_guru") %> &#64; <%= current_year %>
   <a href="https://thinknetica.com/" target="_blank">Учебный проект в онлайн-школе Thinknetica</a>, Игорь Удалов
   </p>
   <small>
-  <a href="/about" target="_target">О проекте</a> | <a href="/about" target="_target">Об авторе</a>
+  <a href="/about" target="_target">О проекте</a> | <a href="/about" target="_target">Об авторе</a> | <%= link_to 'Свяжитесь с нами', new_contact_message_path %>
   </small>
 </footer>
+
+</div>
