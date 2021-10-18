@@ -1,5 +1,10 @@
 <div class="form-check">
 
+<% unless @test.finalized? %>
+    <br>
+    <div class="alert alert-warning" role="alert">Перепроверьте тест перед публикацией.</div>
+<% end%>
+
 <%= form_with url: (@test.new_record? ? admin_tests_path : admin_test_path(@test)), model: @test do |form| %>
     <%= form.label              :title, class: 'form-check-label' %> <br>
     <%= form.text_field         :title %> <br>
@@ -7,7 +12,9 @@
     <%= form.collection_select  :category_id, Category.order(:title), :id, :title, prompt: true, class: 'form-check-input' %> <br>
     <%= form.label              :level, class: 'form-check-label' %> <br>
     <%= form.number_field       :level %><br>
-    <br>
+    <%= form.label              :published, class: 'form-check-label' %> <br>
+    <%= form.select             :published, { t('tests.test.published_true') => true, t('tests.test.published_false') => false} %>
+    <br><br>
     <%= form.submit t('admin.save'), class: 'btn btn-primary btn-sm' %>
 <% end %>
 </div>

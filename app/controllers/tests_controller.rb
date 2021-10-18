@@ -23,6 +23,6 @@ class TestsController < ApplicationController
   end
 
   def set_tests
-    @tests = Test.all
+    @tests = Test.published
   end
 end

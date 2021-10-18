@@ -15,6 +15,7 @@ ru:
         category: 'Категория'
         category_id: 'Категория'
         level: 'Уровень сложности'
+        published: 'Статус публикации'
       question:
         answers: 'Кол-во вопросов'
         body: 'Содержание'
@@ -40,6 +41,8 @@ ru:
             level: 
               greater_than: 'должен быть больше %{count}'
               not_an_integer: 'должен быть целым'
+            published:
+              required: 'не заполнен'
         category:
           attributes:
             title:

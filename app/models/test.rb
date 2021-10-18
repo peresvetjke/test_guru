@@ -9,10 +9,11 @@ class Test < ApplicationRecord
   validates :level, numericality: { only_integer: true, greater_than: 0 }
   validates :title, uniqueness: { scope: :level, message: 'уже занято для данного уровня' }
 
-  scope :easy,   -> { where('level in (0, 1)')    }
-  scope :medium, -> { where('level in (2, 3, 4)') }
-  scope :hard,   -> { where('level >= 5')         }
-  scope :category_title, -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
+  scope :easy,            -> { where('level in (0, 1)')    }
+  scope :medium,          -> { where('level in (2, 3, 4)') }
+  scope :hard,            -> { where('level >= 5')         }
+  scope :published,       -> { where('published = true')   }
+  scope :category_title,  -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
 
   MIN_QUESTIONS_AMOUNT = 1
 
