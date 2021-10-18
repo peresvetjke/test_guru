@@ -7,11 +7,11 @@ category3 = Category.create!(title: 'SQL')
 category4 = Category.create!(title: 'Ruby')
 puts 'Categories created'
 
-test1= Test.create!(title: 'Тест по математике для 5-го класса', author_id: 1, category_id: 2, level: 1)
-test2= Test.create!(title: 'Хорошо ли ты помнишь фильм “Матрица”?', author_id: 1, category_id: 1, level: 2)
-test3= Test.create!(title: 'Тест на знание SQL', author_id: 1, category_id: 3, level: 2)
-test4= Test.create!(title: 'Как хорошо вы знаете фильмы 90-х?', author_id: 1, category_id: 1, level: 3)
-test5= Test.create!(title: 'Тест на знание основ Ruby', author_id: 1, category_id: 4, level: 3)
+test1= Test.create!(title: 'Тест по математике для 5-го класса', author_id: 1, category_id: 2, level: 1, published: true)
+test2= Test.create!(title: 'Хорошо ли ты помнишь фильм “Матрица”?', author_id: 1, category_id: 1, level: 2, published: true)
+test3= Test.create!(title: 'Тест на знание SQL', author_id: 1, category_id: 3, level: 2, published: true)
+test4= Test.create!(title: 'Как хорошо вы знаете фильмы 90-х?', author_id: 1, category_id: 1, level: 3, published: true)
+test5= Test.create!(title: 'Тест на знание основ Ruby', author_id: 1, category_id: 4, level: 3, published: true)
 puts 'Tests created'
 
 question1 = Question.create!(body: '8 * 5 =', test_id: 1)
