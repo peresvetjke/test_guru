@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  category: one
+  first_try: false
+  all_tests: false
+  level: 1
+
+two:
+  title: MyText
+  category: two
+  first_try: false
+  all_tests: false
+  level: 1

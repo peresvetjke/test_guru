@@ -10,8 +10,8 @@ puts 'Categories created'
 test1= Test.create!(title: 'Тест по математике для 5-го класса', author_id: 1, category_id: 2, level: 1, published: true)
 test2= Test.create!(title: 'Хорошо ли ты помнишь фильм “Матрица”?', author_id: 1, category_id: 1, level: 2, published: true)
 test3= Test.create!(title: 'Тест на знание SQL', author_id: 1, category_id: 3, level: 2, published: true)
-test4= Test.create!(title: 'Как хорошо вы знаете фильмы 90-х?', author_id: 1, category_id: 1, level: 3, published: true)
-test5= Test.create!(title: 'Тест на знание основ Ruby', author_id: 1, category_id: 4, level: 3, published: true)
+test4= Test.create!(title: 'Как хорошо вы знаете фильмы 90-х?', author_id: 1, category_id: 1, level: 4, published: true)
+test5= Test.create!(title: 'Тест на знание основ Ruby', author_id: 1, category_id: 4, level: 4, published: true)
 puts 'Tests created'
 
 question1 = Question.create!(body: '8 * 5 =', test_id: 1)
@@ -237,3 +237,18 @@ answer169 = Answer.create!(question_id: 48, body: 'Выведет: "Неболь
 answer170 = Answer.create!(question_id: 48, body: 'Выведет: true', correct: false)
 answer171 = Answer.create!(question_id: 48, body: 'Выведет: false ', correct: true)
 puts 'Answers created'
+
+rule1 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов из категории SQL", category_id: 3, all_tests: true)
+rule2 = Rule.create!(title:"Выдать бэйдж после успешного прохождения теста с первой попытки", first_try: true)
+rule3 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов уровня 4", level: 4, all_tests: true)
+puts 'Rules created'
+
+badge1 = rule1.badges.new(title: "успешноe прохождение всех тестов из категории SQL")
+badge2 = rule2.badges.new(title: "успешноe прохождение теста с первой попытки")
+badge3 = rule2.badges.new(title: "успешное прохождение всех тестов уровня 4")
+puts 'Badges created'
+
+admin.badges.push(badge1)
+admin.badges.push(badge2)
+admin.badges.push(badge3)
+puts 'Badges awarded'
