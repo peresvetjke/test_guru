@@ -3,9 +3,10 @@ class TestPassage < ApplicationRecord
   belongs_to :user
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  after_initialize :after_initialize_set_current_question, if: :new_record?
-  after_validation :after_validation_define_next_question, on: :update, unless: :completed?
-  
+  validate :test_finalized
+
+  after_initialize  :after_initialize_set_current_question, if: :new_record?
+  after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
   PASSING_PERCENTAGE = 85.freeze
   
@@ -54,6 +55,12 @@ class TestPassage < ApplicationRecord
   end
 
   private
+
+  def test_finalized
+    unless self.test.finalized?
+      errors.add :base, "Данный тест находится в разработке. Пожалуйста, выберите другой."
+    end
+  end
 
   def after_initialize_set_current_question
     self.current_question = test.questions.order(id: :asc).first

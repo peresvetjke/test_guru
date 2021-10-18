@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   around_action :switch_locale
+  after_action -> { flash.discard }, if: -> { request.xhr? }
 
   def after_sign_in_path_for(user)
     user.admin? ? admin_tests_path : tests_path

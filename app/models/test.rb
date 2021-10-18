@@ -14,7 +14,27 @@ class Test < ApplicationRecord
   scope :hard,   -> { where('level >= 5')         }
   scope :category_title, -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
 
+  MIN_QUESTIONS_AMOUNT = 1
+
   def self.titles_by_category_title(category_title)
     Test.category_title(category_title).distinct.order('tests.title DESC').pluck('tests.title')
+  end
+
+  def finalized?
+    self.has_min_questions_amount? && !self.has_questions_without_answers? && !self.has_questions_without_correct_answers?
+  end
+
+  private
+
+  def has_min_questions_amount?
+    self.questions.count >= MIN_QUESTIONS_AMOUNT
+  end
+
+  def has_questions_without_answers?
+    self.questions.any? { |q| q.answers.count < 1 }
+  end
+
+  def has_questions_without_correct_answers?
+    self.questions.any? { |q| q.answers.correct.count < 1 }
   end
 end
