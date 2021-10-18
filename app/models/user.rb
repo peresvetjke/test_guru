@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :test_passages
   has_many :tests, through: :test_passages
   has_many :contact_messages
+  has_many :badges_awardings
+  has_many :badges, through: :badges_awardings
 
 #  has_secure_password
   validates :email, presence: true, uniqueness: true, format: { with: /@/ }
