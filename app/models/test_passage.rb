@@ -3,13 +3,16 @@ class TestPassage < ApplicationRecord
   belongs_to :user
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  validate :test_finalized
-
   after_initialize  :after_initialize_set_current_question, if: :new_record?
   after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
+  scope :category_and_user, -> (category, user) {joins(:test).where('tests.category_id = :category_id AND test_passages.user_id = :user_id', category_id: category.id, user_id: user.id)}
+  scope :level_and_user,    -> (level, user)    {joins(:test).where('tests.level = :level AND test_passages.user_id = :user_id', level: level, user_id: user.id)}
+
   PASSING_PERCENTAGE = 85.freeze
   
+  attr_accessor :new_badges
+
   def accept!(answer_ids)
     evaluate_answer(answer_ids)
     save
@@ -54,13 +57,26 @@ class TestPassage < ApplicationRecord
     end
   end
 
-  private
-
-  def test_finalized
-    unless self.test.finalized?
-      errors.add :base, "Данный тест находится в разработке. Пожалуйста, выберите другой."
-    end
+  def evaluate_result!
+    self.passed = passed?
+    save
+    self.new_badges = Badge.badges_earned(self)
+    self.new_badges.each { |badge| self.user.badges.push(badge) }
   end
+
+  def tests_passed_ids_same_category
+    TestPassage.category_and_user(self.test.category, self.user).select { |t| t.passed }.map { |t| t.test_id }.uniq.sort
+  end
+
+  def tests_passed_ids_same_level
+    TestPassage.level_and_user(self.test.level, self.user).select { |t| t.passed }.map { |t| t.test_id }.uniq.sort
+  end
+
+  def passed_on_first_try?
+    self.passed? && TestPassage.where('test_id = :test_id AND user_id = :user_id', test_id: self.test_id, user_id: self.user_id).count == 1
+  end
+
+  private
 
   def after_initialize_set_current_question
     self.current_question = test.questions.order(id: :asc).first

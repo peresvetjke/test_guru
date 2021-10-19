@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   namespace :admin do
+    resources :rules
+    resources :badges
+
     resources :tests do
       patch :update_inline, on: :member
 
@@ -17,9 +20,7 @@ Rails.application.routes.draw do
   end
   
   resources :tests do
-    member do
-      post 'start'
-    end
+    post 'start', on: :member
 
     resources :test_passages, shallow: true do
       member do
@@ -28,6 +29,10 @@ Rails.application.routes.draw do
       end
     end
 
+  end
+
+  resources :badges, only: :index do
+    get 'awarded', on: :collection
   end
 
   resources :contact_messages, only: %i[new create]

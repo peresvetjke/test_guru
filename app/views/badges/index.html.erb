@@ -1,0 +1,26 @@
+<div class="container-fluid">
+
+<h2>Список бэйджей</h2>
+
+<table class='table table-bordered'>
+<tr>
+  <th class="sort-by-title pointer">Название
+    <%= octicon 'arrow-up',   class: 'text-success' %>
+    <%= octicon 'arrow-down', class: 'text-success' %>
+  </th>
+  <th>Изображение</th>
+</tr>
+
+<% @badges.each do |badge| %>
+  <tr>
+    <td class="align-middle"><%= badge.title %></td>
+    <td><img width="80" height="80" src='<%= badge.image_url %>'></td>
+  </tr>
+<% end %>
+
+</table>
+<%= link_to 'Перейти к моим бейджам', awarded_badges_path %><br>
+<%= link_to 'Перейти к тестам', tests_path %>
+<br>
+</div>
+

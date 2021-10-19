@@ -22,4 +22,14 @@
 
 <% end %>
 <br><br>
+
+<% if @test_passage.new_badges.present? %>
+  <h3>Поздравляем! По итогам теста вам присвоены новые бэйджи:</h3>
+  <% @test_passage.new_badges.each do |badge| %>
+  <div>
+    <p><%= badge.title %></p>
+    <img width="80" height="80" src='<%= badge.image_url %>'></td>
+  </div>
+  <% end %>
+<% end %>
 <%= link_to 'Перейти к списку тестов', tests_path %>

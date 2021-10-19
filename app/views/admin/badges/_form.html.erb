@@ -1,0 +1,15 @@
+<div class="form-check">
+
+<%= form_with url: (@badge.new_record? ? admin_badges_path : admin_badge_path(@badge)), model: @badge do |form| %>
+    <%= form.label              :title, class: 'form-check-label' %> <br>
+    <%= form.text_field         :title %> <br>
+    <%= form.label              :image_url, class: 'form-check-label' %> <br>
+    <%= form.text_field         :image_url %> <br>
+    <img width="80" height="80" src='<%= @badge.image_url %>'><br>
+    <%= form.label              :rule_id, class: 'form-check-label' %> <br>
+    <%= form.collection_select  :rule_id, Rule.order(:title), :id, :title, prompt: true, class: 'form-check-input' %> <br>
+    
+    <br><br>
+    <%= form.submit t('admin.save'), class: 'btn btn-primary btn-sm' %>
+<% end %>
+</div>

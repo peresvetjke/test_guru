@@ -1,0 +1,11 @@
+<h2>Просмотр '<%= @badge.title %>'</h2> <br>
+
+<p><strong>Ссылка на изображение: </strong><%= @badge.image_url %></p>
+<img width="80" height="80" src='<%= @badge.image_url %>'><br>
+<p><strong>Правило: </strong><%= @badge.rule&.title %></p>
+
+<br>
+
+<%= link_to t('admin.change'), edit_admin_badge_path %>
+<%= link_to t('shared.back'), admin_badges_path %>
+
