@@ -1,0 +1,30 @@
+<div class="container-fluid">
+
+<h2>Список полученных бэйджей</h2>
+
+<% if @badges.present? %>
+<table class='table table-bordered'>
+<tr>
+  <th class="sort-by-title pointer">Название
+    <%= octicon 'arrow-up',   class: 'text-success' %>
+    <%= octicon 'arrow-down', class: 'text-success' %>
+  </th>
+  <th>Изображение</th>
+</tr>
+
+<% @badges.each do |badge| %>
+  <tr>
+    <td class="align-middle"><%= badge.title %></td>
+    <td><img width="80" height="80" src='<%= badge.image_url %>'><%= amount(badge)%></td>
+  </tr>
+<% end %>
+
+<% else %>
+<p>У вас пока нет бэйджей.</p>
+<% end %>
+
+</table>
+<%= link_to 'Перейти к полному списку бейджей', badges_path %><br>
+<%= link_to 'Перейти к тестам', tests_path %>
+</div>
+

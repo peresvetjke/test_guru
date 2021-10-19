@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_110817) do
+ActiveRecord::Schema.define(version: 2021_10_19_085932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2021_10_18_110817) do
     t.text "title", null: false
     t.text "image_url"
     t.bigint "rule_id"
-    t.boolean "active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["rule_id"], name: "index_badges_on_rule_id"
@@ -85,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_110817) do
     t.integer "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "recurrent", default: false
     t.index ["category_id"], name: "index_rules_on_category_id"
   end
 
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_110817) do
     t.integer "correct_questions", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "passed"
     t.index ["current_question_id"], name: "index_test_passages_on_current_question_id"
     t.index ["questions_id"], name: "index_test_passages_on_questions_id"
     t.index ["test_id"], name: "index_test_passages_on_test_id"

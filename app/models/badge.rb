@@ -3,16 +3,15 @@ class Badge < ApplicationRecord
   has_many :badges_awardings
   has_many :users, through: :badges_awardings
 
-  validates :title, presence: true
+  validates :title, :rule_id, :image_url, presence: true
 
-=begin
-  def rule_assigned?
-    !self.rule.nil?
+  def self.badges_earned(passed_test_passage)
+    new_badges = []
+    Badge.all.each do |badge|
+      new_badges << badge if badge.rule.condition_met?(passed_test_passage) &&
+                             (BadgesAwarding.where(user: passed_test_passage.user, badge: badge).count == 0 ||
+                             (BadgesAwarding.where(user: passed_test_passage.user, badge: badge).count > 0  && badge.rule.recurrent == true)) 
+    end
+    new_badges
   end
-
-  def active=(value)
-    return false if value && !self.rule_assigned?
-    self.active = value
-  end
-=end
 end

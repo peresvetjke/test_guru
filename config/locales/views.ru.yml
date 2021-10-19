@@ -5,6 +5,7 @@ ru:
     change: 'Изменить'
     delete: 'Удалить'
     confirm: 'Вы уверены?'
+    new_rule: 'Новое правило'
     new_test: 'Новый тест'
     new_question: 'Новый вопрос'
     change_test: 'Изменение теста'
@@ -24,6 +25,14 @@ ru:
     gists_list: 'Список Gist'
     successfully_created: 'Gist был успешно создан'
     link_to_gist: 'Ссылка на Gist'
+  rules:
+    index:
+      all_tests: 'Все тесты'
+      badges_amount: 'Кол-во бэджей'
+      first_try: 'С первой попытки'
+      title: 'Список правил'
+    show:
+      rule: 'Правило'
   tests:
     index:
       heading: "Список тестов"
