@@ -28,7 +28,7 @@ class TestPassage < ApplicationRecord
   end
 
   def passed?
-    success_percent >= PASSING_PERCENTAGE
+    success_percent >= PASSING_PERCENTAGE && !time_elapsed?
   end
 
   def current_question_order_number
@@ -74,6 +74,11 @@ class TestPassage < ApplicationRecord
 
   def passed_on_first_try?
     self.passed? && TestPassage.where('test_id = :test_id AND user_id = :user_id', test_id: self.test_id, user_id: self.user_id).count == 1
+  end
+
+  def time_elapsed?
+    return false if self.test.max_time_min.zero?
+    (Time.now - self.created_at) / 60 > self.test.max_time_min
   end
 
   private
