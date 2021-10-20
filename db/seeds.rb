@@ -22,9 +22,9 @@ for c_i in 1..2
   end
 end
 
-rule1 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов из категории 2", category_id: 2, all_tests: true)
+rule1 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов из категории 2", category_id: 2)
 rule2 = Rule.create!(title:"Выдать бэйдж после успешного прохождения теста с первой попытки", first_try: true, recurrent: true)
-rule3 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов уровня 2", level: 2, all_tests: true)
+rule3 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов уровня 2", level: 2)
 puts 'Rules created'
 
 badge1 = rule1.badges.create!(title: "успешноe прохождение всех тестов из категории 2", image_url: 'https://i.ibb.co/V2Lf81M/936f1b39-011e-4b8b-81d9-82e83319bcde.png')
