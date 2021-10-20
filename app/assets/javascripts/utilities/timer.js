@@ -1,14 +1,11 @@
 document.addEventListener('turbolinks:load', function() {
   var control = document.querySelector('#clockdiv');
 
-  console.log('im alive!');
   if (control) { 
     initializeClock() 
   }
 
 })
-
-// export { initializeClock };
 
 function initializeClock() {
   const endtime = document.getElementById("testEndTime");
@@ -21,13 +18,13 @@ function initializeClock() {
     const secondsSpan = clock.querySelector(".seconds");
 
     function updateClock() {
-      console.log('Gotcha!')
       const t = getTimeRemaining(innerEndtime);
       minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
       secondsSpan.innerHTML = ("0" + t.seconds).slice(-2);
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
+        window.location.reload();
       }
     }
 
@@ -41,10 +38,8 @@ function getTimeRemaining(endtime) {
   const seconds = Math.floor((total / 1000) % 60);
   const minutes = Math.floor((total / 1000 / 60) % 60);
   return {
+    total,
     minutes,
     seconds,
   };
 }
-
-
-

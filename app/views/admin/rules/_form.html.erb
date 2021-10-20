@@ -4,11 +4,9 @@
     <%= form.label              :title, t('tests.index.title'), class: 'form-check-label' %> <br>
     <%= form.text_field         :title %> <br>
     <%= form.label              :category_id, t('tests.index.category'), class: 'form-check-label' %> <br>
-    <%= form.collection_select  :category_id, Category.order(:title), :id, :title, prompt: true, class: 'form-check-input' %> <br>
+    <%= form.collection_select  :category_id, Category.order(:title), :id, :title, prompt: 'Select', class: 'form-check-input' %> <br>
     <%= form.label              :first_try, t('rules.index.first_try'), class: 'mt-2' %>
-    <%= form.check_box          :first_try %>
-    <%= form.label              :all_tests, t('rules.index.all_tests') %>
-    <%= form.check_box          :all_tests %><br>
+    <%= form.check_box          :first_try %><br>
     <%= form.label              :level, t('tests.index.level'), class: 'form-check-label' %> <br>
     <%= form.number_field       :level %><br>
     <br>
