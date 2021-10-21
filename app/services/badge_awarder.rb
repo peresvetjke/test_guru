@@ -27,7 +27,7 @@ class BadgeAwarder
     else 
       all = badge.rule.relevant_tests
       passed = all.tests_passed_by_user(@user)
-      !all.empty? && all.ids.sort == passed.ids.sort
+      !all.empty? && all.ids.uniq.sort == passed.ids.uniq.sort
     end     
   end
 
