@@ -13,7 +13,8 @@ class Test < ApplicationRecord
   scope :medium,          -> { where('level in (2, 3, 4)') }
   scope :hard,            -> { where('level >= 5')         }
   scope :published,       -> { where('published = true')   }
-  scope :category_title,  -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
+  scope :tests_by_category_title, -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
+  scope :tests_passed_by_user,    -> (user)           { joins(:users).where("users.id = :user_id AND test_passages.passed = :passed", user_id: user.id, passed: true)}
 
   MIN_QUESTIONS_AMOUNT = 1
 
