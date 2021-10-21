@@ -1,3 +1,4 @@
+=begin
 admin = User.create!(login: "Admin", email: "master.testg2394@gmail.com", password: 'xxxxxx', type: 'Admin')
 puts 'Admin created'
 
@@ -247,8 +248,8 @@ badge1 = rule1.badges.create!(title: "SQL Master", image_url: 'https://i.ibb.co/
 badge2 = rule2.badges.create!(title: "Too easy", image_url: 'https://i.ibb.co/gJFXDL8/19c4596f-46f5-489d-ac5a-8b82d6ea1465.png')
 badge3 = rule3.badges.create!(title: "Hard stone", image_url: 'https://i.ibb.co/D4dXMjM/de3fc14d-2f30-49b5-8762-a38598a1d26f.png')
 puts 'Badges created'
+=end
 
-=begin
 for c_i in 1..2
   category = Category.create!(title: "Category ##{c_i}")
   admin = User.create!(login: "Admin ##{c_i}", email: "admin#{c_i}@mail.ru", password: 'xxxxxx', type: 'Admin')
@@ -281,9 +282,3 @@ badge1 = rule1.badges.create!(title: "успешноe прохождение в�
 badge2 = rule2.badges.create!(title: "успешноe прохождение теста с первой попытки", image_url: 'https://i.ibb.co/gJFXDL8/19c4596f-46f5-489d-ac5a-8b82d6ea1465.png')
 badge3 = rule3.badges.create!(title: "успешное прохождение всех тестов уровня 2", image_url: 'https://i.ibb.co/D4dXMjM/de3fc14d-2f30-49b5-8762-a38598a1d26f.png')
 puts 'Badges created'
-
-admin.badges.push(badge1)
-admin.badges.push(badge2)
-admin.badges.push(badge3)
-puts 'Badges awarded'
-=end

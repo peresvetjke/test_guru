@@ -2,17 +2,13 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :user
   belongs_to :current_question, class_name: 'Question', optional: true
+  has_many   :badges_awardings
+  has_many   :badges, through: :badges_awardings
 
   after_initialize  :after_initialize_set_current_question, if: :new_record?
   after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
-  scope :user,      -> (user)     {joins(:test).where('test_passages.user_id = :user_id', user_id: user.id)}
-  scope :category,  -> (category) {joins(:test).where('tests.category_id = :category_id', category_id: category.id)}
-  scope :level,     -> (level)    {joins(:test).where('tests.level = :level', level: level)}
-
   PASSING_PERCENTAGE = 85.freeze
-  
-  attr_accessor :new_badges
 
   def accept!(answer_ids)
     evaluate_answer(answer_ids)
@@ -61,12 +57,10 @@ class TestPassage < ApplicationRecord
   def evaluate_result!
     self.passed = passed?
     save
-    self.new_badges = Badge.badges_earned(self)
-    self.new_badges.each { |badge| self.user.badges.push(badge) }
   end
 
   def passed_on_first_try?
-    self.passed? && TestPassage.where('test_id = :test_id AND user_id = :user_id', test_id: self.test_id, user_id: self.user_id).count == 1
+    self.passed? && TestPassage.where(test_id: self.test_id, user_id: self.user_id).count == 1
   end
 
   private

@@ -9,12 +9,12 @@ class Test < ApplicationRecord
   validates :level,         numericality: { only_integer: true, greater_than: 0 }
   validates :title,         uniqueness:   { scope: :level, message: 'уже занято для данного уровня' }
 
-  scope :easy,            -> { where('level in (0, 1)')    }
-  scope :medium,          -> { where('level in (2, 3, 4)') }
-  scope :hard,            -> { where('level >= 5')         }
-  scope :published,       -> { where('published = true')   }
-  scope :category_title,  -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
-  scope :passed,          -> (user)           { joins(:users).where("users.id = :user_id AND test_passages.passed = true", user_id: user.id)}
+  scope :easy,                    -> { where('level in (0, 1)')    }
+  scope :medium,                  -> { where('level in (2, 3, 4)') }
+  scope :hard,                    -> { where('level >= 5')         }
+  scope :published,               -> { where('published = true')   }
+  scope :tests_by_category_title, -> (category_title) { joins(:category).where("categories.title = ?", category_title) }
+  scope :tests_passed_by_user,    -> (user)           { joins(:users).where("users.id = :user_id AND test_passages.passed = true", user_id: user.id)}
 
   MIN_QUESTIONS_AMOUNT = 1
 

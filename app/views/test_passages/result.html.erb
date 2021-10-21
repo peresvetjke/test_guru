@@ -12,13 +12,8 @@
   <% end %>
 
   <h2>Прохождение теста '<%= @test_passage.test.title %>' завершено.</h2> 
-
     <h3 style="color:<%= color%>;"><%= message %></h3>
-    <% if @test_passage.time_elapsed? %>
-    <p>Вы не уложились в отведенное время. Попробуйте снова!</p>
-    <% else %>  
     <p>вы ответили верно на <span style="color:<%= color%>"><%= number_to_percentage(@test_passage.success_percent, precision: 0) %></span> вопросов.</p>
-    <% end %>
 
 <% else %>
 <h2> Вы еще не прошли тест до конца.</h2>
@@ -27,9 +22,9 @@
 <% end %>
 <br><br>
 
-<% if @test_passage.new_badges.present? %>
+<% if @badges.present? %>
   <h3>Поздравляем! По итогам теста вам присвоены новые бэйджи:</h3>
-  <% @test_passage.new_badges.each do |badge| %>
+  <% @badges.each do |badge| %>
   <div>
     <p><%= badge.title %></p>
     <img width="80" height="80" src='<%= badge.image_url %>'></td>
