@@ -14,8 +14,6 @@
     <%= form.number_field       :level %><br>
     <%= form.label              :published, class: 'form-check-label' %> <br>
     <%= form.select             :published, { t('tests.test.published_true') => true, t('tests.test.published_false') => false} %> <br>
-    <%= form.label              :max_time_min, 'Ограничение по времени (мин.)', class: 'form-check-label' %> <br>
-    <%= form.number_field       :max_time_min, value: @test.max_time_min %><br>
     <br><br>
     <%= form.submit t('admin.save'), class: 'btn btn-primary btn-sm' %>
 <% end %>

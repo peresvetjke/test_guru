@@ -3,7 +3,6 @@
 <p><strong><%= t('activerecord.attributes.test.category') %>: </strong><%= @test.category.title %></p>
 <p><strong><%= t('activerecord.attributes.test.level') %>: </strong><%= @test.level %></p>
 <p><strong><%= t('activerecord.attributes.test.published') %>: </strong><%= publication_status(@test) %></p>
-<p><strong>Ограничение по времени (мин.): </strong><%= @test.max_time_min %></p>
 
 <h4><%= t('shared.questions_list') %>:</h4>
 <% if @test.questions.present? %><br><br>
