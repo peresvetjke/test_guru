@@ -45,7 +45,7 @@ class Admin::RulesController < Admin::BaseController
   end
 
   def rule_params
-    params.require(:rule).permit(:title, :category_id, :first_try, :level)
+    params.require(:rule).permit(:title, :category_id, :first_try, :all_tests, :level)
   end
 
 end

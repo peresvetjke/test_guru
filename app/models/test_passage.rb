@@ -6,9 +6,8 @@ class TestPassage < ApplicationRecord
   after_initialize  :after_initialize_set_current_question, if: :new_record?
   after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
-  scope :user,      -> (user)     {joins(:test).where('test_passages.user_id = :user_id', user_id: user.id)}
-  scope :category,  -> (category) {joins(:test).where('tests.category_id = :category_id', category_id: category.id)}
-  scope :level,     -> (level)    {joins(:test).where('tests.level = :level', level: level)}
+  scope :category_and_user, -> (category, user) {joins(:test).where('tests.category_id = :category_id AND test_passages.user_id = :user_id', category_id: category.id, user_id: user.id)}
+  scope :level_and_user,    -> (level, user)    {joins(:test).where('tests.level = :level AND test_passages.user_id = :user_id', level: level, user_id: user.id)}
 
   PASSING_PERCENTAGE = 85.freeze
   
@@ -45,7 +44,7 @@ class TestPassage < ApplicationRecord
   end
 
   def completed?
-    current_question.nil? || time_elapsed?
+    current_question.nil?
   end
 
   def progress(previous = false)
@@ -63,6 +62,14 @@ class TestPassage < ApplicationRecord
     save
     self.new_badges = Badge.badges_earned(self)
     self.new_badges.each { |badge| self.user.badges.push(badge) }
+  end
+
+  def tests_passed_ids_same_category
+    TestPassage.category_and_user(self.test.category, self.user).select { |t| t.passed }.map { |t| t.test_id }.uniq.sort
+  end
+
+  def tests_passed_ids_same_level
+    TestPassage.level_and_user(self.test.level, self.user).select { |t| t.passed }.map { |t| t.test_id }.uniq.sort
   end
 
   def passed_on_first_try?

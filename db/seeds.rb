@@ -1,3 +1,45 @@
+
+
+for c_i in 1..2
+  category = Category.create!(title: "Category ##{c_i}")
+  admin = User.create!(login: "Admin ##{c_i}", email: "admin#{c_i}@mail.ru", password: 'xxxxxx', type: 'Admin')
+  user = User.create!(login: "User ##{c_i}", email: "user#{c_i}@mail.ru", password: 'xxxxxx')
+  
+  for t_i in 1..2
+    test = Test.create!(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i}; author: #{admin.id})", category_id: category.id, level: t_i, author_id: admin.id, published: true)
+    # TestPassage.create!(test_id: t_i, user_id: user.id)
+
+    for q_i in 1..3
+    question = Question.new(body: "Question #{q_i} (test_id: #{test.id})", test_id: test.id)
+    question_answers = []
+      a_max = 3
+      for a_i in 1..a_max
+        corr = a_i == a_max ? true : false
+        question_answers << question.answers.new(body: "Answer #{a_i} (test_id: #{test.id}; question_id: #{q_i}; correct: #{corr})" , question_id: question.id, correct: corr)
+      end
+    question.save!
+    question_answers.each {|answer| answer.save!}
+    end
+  end
+end
+
+rule1 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов из категории 2", category_id: 2, all_tests: true)
+rule2 = Rule.create!(title:"Выдать бэйдж после успешного прохождения теста с первой попытки", first_try: true, recurrent: true)
+rule3 = Rule.create!(title:"Выдать бэйдж после успешного прохождения всех тестов уровня 2", level: 2, all_tests: true)
+puts 'Rules created'
+
+badge1 = rule1.badges.create!(title: "успешноe прохождение всех тестов из категории 2", image_url: 'https://i.ibb.co/V2Lf81M/936f1b39-011e-4b8b-81d9-82e83319bcde.png')
+badge2 = rule2.badges.create!(title: "успешноe прохождение теста с первой попытки", image_url: 'https://i.ibb.co/gJFXDL8/19c4596f-46f5-489d-ac5a-8b82d6ea1465.png')
+badge3 = rule3.badges.create!(title: "успешное прохождение всех тестов уровня 2", image_url: 'https://i.ibb.co/D4dXMjM/de3fc14d-2f30-49b5-8762-a38598a1d26f.png')
+puts 'Badges created'
+
+admin.badges.push(badge1)
+admin.badges.push(badge2)
+admin.badges.push(badge3)
+puts 'Badges awarded'
+
+=begin
+>>>>>>> parent of f215332... Add timer and other
 admin = User.create!(login: "Admin", email: "master.testg2394@gmail.com", password: 'xxxxxx', type: 'Admin')
 puts 'Admin created'
 
