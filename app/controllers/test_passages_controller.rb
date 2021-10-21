@@ -6,7 +6,7 @@ class TestPassagesController < ApplicationController
   end
 
   def update
-    @test_passage.accept!(params[:answer_ids])
+    @test_passage.accept!(params[:answer_ids]) 
 
     if @test_passage.completed?
       redirect_to result_test_passage_path
@@ -16,7 +16,7 @@ class TestPassagesController < ApplicationController
   end
 
   def result
-
+    @test_passage.evaluate_result!
   end
 
   def create_gist

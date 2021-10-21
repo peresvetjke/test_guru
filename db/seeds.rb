@@ -1,3 +1,4 @@
+=begin
 admin = User.create!(login: "Admin", email: "master.testg2394@gmail.com", password: 'xxxxxx', type: 'Admin')
 puts 'Admin created'
 
@@ -237,3 +238,27 @@ answer169 = Answer.create!(question_id: 48, body: 'Выведет: "Неболь
 answer170 = Answer.create!(question_id: 48, body: 'Выведет: true', correct: false)
 answer171 = Answer.create!(question_id: 48, body: 'Выведет: false ', correct: true)
 puts 'Answers created'
+=end
+
+for c_i in 1..2
+  category = Category.create!(title: "Category ##{c_i}")
+  admin = User.create!(login: "Admin ##{c_i}", email: "admin#{c_i}@mail.ru", password: 'xxxxxx', type: 'Admin')
+  user = User.create!(login: "User ##{c_i}", email: "user#{c_i}@mail.ru", password: 'xxxxxx')
+  
+  for t_i in 1..2
+    test = Test.create!(title: "Test ##{t_i} (category_id: #{category.id}; level: #{t_i}; author: #{admin.id})", category_id: category.id, level: t_i, author_id: admin.id, published: true)
+    # TestPassage.create!(test_id: t_i, user_id: user.id)
+
+    for q_i in 1..3
+    question = Question.new(body: "Question #{q_i} (test_id: #{test.id})", test_id: test.id)
+    question_answers = []
+      a_max = 3
+      for a_i in 1..a_max
+        corr = a_i == a_max ? true : false
+        question_answers << question.answers.new(body: "Answer #{a_i} (test_id: #{test.id}; question_id: #{q_i}; correct: #{corr})" , question_id: question.id, correct: corr)
+      end
+    question.save!
+    question_answers.each {|answer| answer.save!}
+    end
+  end
+end

@@ -3,16 +3,19 @@ class TestPassage < ApplicationRecord
   belongs_to :user
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  validate :test_finalized
-
   after_initialize  :after_initialize_set_current_question, if: :new_record?
-  after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
+  after_validation  :after_validation_define_next_question, on: :update #, unless: :completed?
+  # after_validation  :after_validation_evaluate_result,      on: :update, if: :completed?
 
   PASSING_PERCENTAGE = 85.freeze
   
   def accept!(answer_ids)
     evaluate_answer(answer_ids)
     save
+  end
+
+  def evaluate_result!
+    self.passed = self.passed?
   end
 
   def evaluate_answer(answer_ids)
@@ -22,10 +25,6 @@ class TestPassage < ApplicationRecord
 
   def success_percent
     ( self.correct_questions.to_f / self.test.questions.count ) * 100
-  end
-
-  def passed?
-    success_percent >= PASSING_PERCENTAGE
   end
 
   def current_question_order_number
@@ -40,10 +39,6 @@ class TestPassage < ApplicationRecord
     self.current_question_order_number - 1 
   end
 
-  def completed?
-    current_question.nil?
-  end
-
   def progress(previous = false)
     question_order_number = previous ? previous_question_order_number : current_question_order_number
 
@@ -54,12 +49,24 @@ class TestPassage < ApplicationRecord
     end
   end
 
+  def time_elapsed?
+    return false unless self.test.max_time_set?
+    (Time.now - self.created_at) / 60 > self.test.max_time_min
+  end
+
+  def completed?
+    current_question.nil? || time_elapsed?
+  end
+  
   private
 
-  def test_finalized
-    unless self.test.finalized?
-      errors.add :base, "Данный тест находится в разработке. Пожалуйста, выберите другой."
-    end
+  def after_validation_evaluate_result
+    passed = passed?
+  end
+
+  def passed?
+    return false if time_elapsed?
+    success_percent >= PASSING_PERCENTAGE
   end
 
   def after_initialize_set_current_question

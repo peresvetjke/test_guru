@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_083233) do
+ActiveRecord::Schema.define(version: 2021_10_21_102713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,26 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.text "title", null: false
+    t.text "image_url"
+    t.bigint "rule_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rule_id"], name: "index_badges_on_rule_id"
+  end
+
+  create_table "badges_awardings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "test_passage_id", null: false
+    t.index ["badge_id"], name: "index_badges_awardings_on_badge_id"
+    t.index ["test_passage_id"], name: "index_badges_awardings_on_test_passage_id"
+    t.index ["user_id"], name: "index_badges_awardings_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -58,6 +78,18 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
+  create_table "rules", force: :cascade do |t|
+    t.text "title", null: false
+    t.bigint "category_id"
+    t.boolean "first_try"
+    t.boolean "all_tests"
+    t.integer "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "recurrent", default: false
+    t.index ["category_id"], name: "index_rules_on_category_id"
+  end
+
   create_table "test_passages", force: :cascade do |t|
     t.bigint "test_id", null: false
     t.bigint "user_id", null: false
@@ -66,6 +98,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.integer "correct_questions", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "passed"
     t.index ["current_question_id"], name: "index_test_passages_on_current_question_id"
     t.index ["questions_id"], name: "index_test_passages_on_questions_id"
     t.index ["test_id"], name: "index_test_passages_on_test_id"
@@ -81,6 +114,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "author_id", null: false
     t.boolean "published", default: false, null: false
+    t.integer "max_time_min", default: 0
     t.index ["author_id"], name: "index_tests_on_author_id"
     t.index ["category_id"], name: "index_tests_on_category_id"
     t.index ["title", "level"], name: "index_tests_on_title_and_level", unique: true
@@ -107,10 +141,15 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "badges", "rules"
+  add_foreign_key "badges_awardings", "badges"
+  add_foreign_key "badges_awardings", "test_passages"
+  add_foreign_key "badges_awardings", "users"
   add_foreign_key "contact_messages", "users"
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"
   add_foreign_key "questions", "tests"
+  add_foreign_key "rules", "categories"
   add_foreign_key "test_passages", "questions", column: "current_question_id"
   add_foreign_key "test_passages", "questions", column: "questions_id"
   add_foreign_key "test_passages", "tests"
