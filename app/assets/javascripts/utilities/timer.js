@@ -12,6 +12,8 @@ function initializeClock() {
   if(endtime) {
     const innerEndtime = endtime.innerHTML
     const clock = document.getElementById("clockdiv");
+    const daysSpan = clock.querySelector(".days");
+    const hoursSpan = clock.querySelector(".hours");
     const minutesSpan = clock.querySelector(".minutes");
     const secondsSpan = clock.querySelector(".seconds");
 

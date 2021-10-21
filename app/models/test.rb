@@ -27,6 +27,14 @@ class Test < ApplicationRecord
     self.has_min_questions_amount? && !self.has_questions_without_answers? && !self.has_questions_without_correct_answers?
   end
 
+  # Badges
+  def self.test_ids_passed_by_category(category)
+
+  end
+
+  def self.ids_by_level(category)
+  end
+
   private
 
   def has_min_questions_amount?
