@@ -3,9 +3,10 @@
     <td><%= test.category.title %></td>
     <td><%= test_level(test) %></td>
     <td><%= test.questions.count %></td>
+    <td><%= test.max_time_min.zero? ? 'не ограничено' : test.max_time_min %></td>
     <td><%= button_to t('.start'), start_test_path(test), method: :post %></td>
 
-<% if current_user.test_passage(test).present? && !current_user.test_passage(test).completed? %>
+<% if current_user.test_passage(test).present? && !current_user.test_passage(test).passed.present? %>
     <td><%= button_to t('.continue'), test_passage_path(current_user.test_passage(test)), method: :get %></td>
     <td><%= current_user.test_passage(test).current_question_order_number %></td>
 <% else %>

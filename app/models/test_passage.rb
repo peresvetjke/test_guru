@@ -6,7 +6,8 @@ class TestPassage < ApplicationRecord
   has_many   :badges, through: :badges_awardings
 
   after_initialize  :after_initialize_set_current_question, if: :new_record?
-  after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
+  after_validation  :after_validation_define_next_question, on: :update #, unless: :completed?
+  # after_validation  :after_validation_evaluate_result,      on: :update, if: :completed?
 
   scope :test_passages_by_user, ->(user) { where('user_id = ?', user.id) }
 
@@ -17,6 +18,11 @@ class TestPassage < ApplicationRecord
     save
   end
 
+  def evaluate_result!
+    self.passed = self.passed?
+    save
+  end
+
   def evaluate_answer(answer_ids)
     answer_ids = [] if answer_ids.nil?
     self.correct_questions += 1 if self.current_question.answers.correct.pluck(:id).sort == answer_ids.map(&:to_i).sort
@@ -24,10 +30,6 @@ class TestPassage < ApplicationRecord
 
   def success_percent
     ( self.correct_questions.to_f / self.test.questions.count ) * 100
-  end
-
-  def passed?
-    success_percent >= PASSING_PERCENTAGE
   end
 
   def current_question_order_number
@@ -42,10 +44,6 @@ class TestPassage < ApplicationRecord
     self.current_question_order_number - 1 
   end
 
-  def completed?
-    current_question.nil?
-  end
-
   def progress(previous = false)
     question_order_number = previous ? previous_question_order_number : current_question_order_number
 
@@ -56,9 +54,24 @@ class TestPassage < ApplicationRecord
     end
   end
 
-  def evaluate_result!
-    self.passed = passed?
-    save
+  def time_elapsed?
+    return false unless self.test.max_time_set?
+    (Time.now - self.created_at) / 60 > self.test.max_time_min
+  end
+
+  def completed?
+    current_question.nil? || time_elapsed?
+  end
+  
+  private
+
+  def after_validation_evaluate_result
+    passed = passed?
+  end
+
+  def passed?
+    return false if time_elapsed?
+    success_percent >= PASSING_PERCENTAGE
   end
 
   private

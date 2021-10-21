@@ -1,5 +1,8 @@
-<div class="form-check">
-<%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
+<%= form_with url: test_passage_path(@test_passage), 
+              local: true, 
+              data:   { test_passage: @test_passage.id },
+              class: "form-check",
+              method: :put do |form| %>
 
   <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
   <p>
@@ -15,7 +18,3 @@
 
 <br>
 <%= button_to t('gists.create_gist'), create_gist_test_passage_path(@test_passage), class:"btn btn-secondary btn-sm" %>
-
-</div>
-
-

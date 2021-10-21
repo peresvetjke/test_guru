@@ -6,7 +6,7 @@ class TestPassagesController < ApplicationController
   end
 
   def update
-    @test_passage.accept!(params[:answer_ids])
+    @test_passage.accept!(params[:answer_ids]) 
 
     if @test_passage.completed?
       @test_passage.evaluate_result!
@@ -19,6 +19,7 @@ class TestPassagesController < ApplicationController
 
   def result
     @badges = @test_passage.badges
+    @test_passage.evaluate_result!
   end
 
   def create_gist

@@ -5,9 +5,10 @@ class Test < ApplicationRecord
   has_many   :users, through: :test_passages
   has_many   :questions, dependent: :destroy
 
-  validates :title, presence: true
-  validates :level, numericality: { only_integer: true, greater_than: 0 }
-  validates :title, uniqueness: { scope: :level, message: 'уже занято для данного уровня' }
+  validates :title,         presence: true
+  validates :title,         uniqueness: { scope: :level, message: 'уже занято для данного уровня' }
+  validates :level,         numericality: { only_integer: true, greater_than: 0 }
+  validates :max_time_min,  numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   scope :easy,            -> { where('level in (0, 1)')    }
   scope :medium,          -> { where('level in (2, 3, 4)') }
@@ -25,7 +26,11 @@ class Test < ApplicationRecord
   def finalized?
     self.has_min_questions_amount? && !self.has_questions_without_answers? && !self.has_questions_without_correct_answers?
   end
-  
+
+  def max_time_set?
+    !self.max_time_min.zero?
+  end
+
   private
 
   def has_min_questions_amount?

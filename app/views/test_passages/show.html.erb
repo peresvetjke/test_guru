@@ -1,4 +1,6 @@
-
+<% unless @test_passage.test.max_time_min.zero? %>
+<%= render 'clock' %>
+<% end %>
 
 <%= render 'progress_bar' %>
 
@@ -6,6 +8,8 @@
 <br>
 <h4><%= @test_passage.current_question.body %> (Вопрос <%= @test_passage.current_question_order_number %> из <%= @test_passage.test.questions.count %>)</h4>
 <br>
+
 <%= render 'form' %>
+
 <br>
 <%= link_to 'Перейти к списку тестов', tests_path %>
