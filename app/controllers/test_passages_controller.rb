@@ -10,11 +10,7 @@ class TestPassagesController < ApplicationController
 
     if @test_passage.completed?
       @test_passage.evaluate_result!
-      
-      badge_awarder = BadgeAwarder.new(@test_passage)
-      badge_awarder.call
-      flash[:notice] = badge_awarder.errors unless badge_awarder.errors.empty?
-
+      BadgeAwarder.new(@test_passage).call
       redirect_to result_test_passage_path(@test_passage)
     else
       redirect_to @test_passage

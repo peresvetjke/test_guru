@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_092807) do
+ActiveRecord::Schema.define(version: 2021_10_22_051923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_10_21_092807) do
     t.bigint "rule_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "recurrent", default: false
     t.index ["rule_id"], name: "index_badges_on_rule_id"
   end
 
@@ -80,14 +81,10 @@ ActiveRecord::Schema.define(version: 2021_10_21_092807) do
 
   create_table "rules", force: :cascade do |t|
     t.text "title", null: false
-    t.bigint "category_id"
-    t.boolean "first_try"
-    t.boolean "all_tests"
-    t.integer "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "recurrent", default: false
-    t.index ["category_id"], name: "index_rules_on_category_id"
+    t.text "method"
+    t.text "value"
   end
 
   create_table "test_passages", force: :cascade do |t|
@@ -148,7 +145,6 @@ ActiveRecord::Schema.define(version: 2021_10_21_092807) do
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"
   add_foreign_key "questions", "tests"
-  add_foreign_key "rules", "categories"
   add_foreign_key "test_passages", "questions", column: "current_question_id"
   add_foreign_key "test_passages", "questions", column: "questions_id"
   add_foreign_key "test_passages", "tests"

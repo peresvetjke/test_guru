@@ -1,36 +1,39 @@
 class BadgeAwarder
-  attr_reader :errors
+  METHOD_TYPES = [:level, :category, :passed_on_first_try]
 
   def initialize(passed_test_passage)
     @test_passage = passed_test_passage
-    @user = passed_test_passage.user
-    @badges = Badge.all
-    @errors = ''
   end
 
   def call
-    @badges.each { |badge| award_badge!(badge) if badge_awardable?(badge) && badge_earned?(badge) }
-  rescue
-    @errors = 'При присвоении бэйджей возникла ошибка. Пожалуйста, обратитесь к администратору'
+    Badge.all.each do |badge| 
+      award_badge!(badge) if send("#{badge.rule.method}_award?", badge.rule.value) && badge_awardable?(badge)
+    end
   end
 
   def award_badge!(badge)
-    awarding = @test_passage.badges_awardings.create!(badge: badge, user: @test_passage.user)
+    @test_passage.badges_awardings.create!(badge: badge, user: @test_passage.user)
   end
 
   private
 
-  def badge_earned?(badge)
-    if badge.rule.first_try == true
-      @test_passage.passed_on_first_try?              
-    else 
-      all = badge.rule.relevant_tests
-      passed = all.tests_passed_by_user(@user)
-      !all.empty? && all.ids.uniq.sort == passed.ids.uniq.sort
-    end     
+  def level_award?(level) 
+    all = Test.where(level: level)
+    passed = all.tests_passed_by_user(@test_passage.user)
+    all.present? && all.ids.uniq.sort == passed.ids.uniq.sort
+  end
+
+  def category_award?(category)
+    all = Test.where(category: category)
+    passed = all.tests_passed_by_user(@test_passage.user)
+    all.present? && all.ids.uniq.sort == passed.ids.uniq.sort
+  end
+
+  def first_try_award?(value = true)
+    @test_passage.passed? && TestPassage.test_passages_by_user_and_test(@test_passage.user, @test_passage.test).count == 1
   end
 
   def badge_awardable?(badge)
-    @user.badges.exclude?(badge) || badge.rule.recurrent == true
+    @test_passage.user.badges.exclude?(badge) || badge.recurrent == true
   end
 end 

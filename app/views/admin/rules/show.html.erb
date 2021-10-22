@@ -1,9 +1,7 @@
 <h2><%= t('rules.show.rule') %> '<%= @rule.title %>'</h2> <br>
 
-<p><strong><%= t('tests.index.category') %>: </strong><%= @rule.category&.title %></p>
-<p><strong><%= t('rules.index.first_try') %>: </strong><%= @rule.first_try %></p>
-<p><strong><%= t('rules.index.all_tests') %>: </strong><%= @rule.all_tests %></p>
-<p><strong><%= t('tests.index.level') %>: </strong><%= @rule.level %></p>
+<p><strong>Метод: </strong><%= @rule.method %></p>
+<p><strong>Значение: </strong><%= @rule.value %></p>
 
 <br>
 

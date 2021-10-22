@@ -8,6 +8,9 @@ class TestPassage < ApplicationRecord
   after_initialize  :after_initialize_set_current_question, if: :new_record?
   after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
+  scope :test_passages_by_user, ->(user) { where('user_id = ?', user.id) }
+  scope :test_passages_by_user_and_test, -> (user, test) { joins(:test).where("test_passages.user_id = ? AND tests.id = ?", user.id, test.id) }
+
   PASSING_PERCENTAGE = 85.freeze
 
   def accept!(answer_ids)
@@ -57,18 +60,6 @@ class TestPassage < ApplicationRecord
   def evaluate_result!
     self.passed = passed?
     save
-  end
-
-  def tests_passed_ids_same_category
-    TestPassage.category_and_user(self.test.category, self.user).select { |t| t.passed }.map { |t| t.test_id }.uniq.sort
-  end
-
-  def tests_passed_ids_same_level
-    TestPassage.level_and_user(self.test.level, self.user).select { |t| t.passed }.map { |t| t.test_id }.uniq.sort
-  end
-
-  def passed_on_first_try?
-    self.passed? && TestPassage.where(test_id: self.test_id, user_id: self.user_id).count == 1
   end
 
   private

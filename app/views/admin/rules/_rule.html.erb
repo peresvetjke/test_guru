@@ -1,10 +1,8 @@
   <tr>
     <td class="align-middle"><%= rule.title %></td>
     <td class="align-middle"><%= rule.badges.count %></td>
-    <td class="align-middle"><%= rule.category&.title %></td>
-    <td class="align-middle"><%= rule.first_try %></td>
-    <td class="align-middle"><%= rule.all_tests %></td>
-    <td class="align-middle"><%= rule.level %></td>
+    <td class="align-middle"><%= rule.method %></td>
+    <td class="align-middle"><%= rule.value %></td>
     <td class="align-middle"><%= link_to t('admin.show'), admin_rule_path(rule) %></td>
     <td class="align-middle"><%= link_to t('admin.change'), edit_admin_rule_path(rule) %></td>
     <td class="align-middle"><%= link_to t('admin.delete'), admin_rule_path(rule),
