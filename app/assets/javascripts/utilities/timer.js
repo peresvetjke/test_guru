@@ -23,22 +23,13 @@ function initializeClock() {
 
       if (t.total <= 0) {
         clearInterval(timeinterval);
-        requestForResult();
+        $(".form-check").submit();
       }
     }
 
     updateClock();
     const timeinterval = setInterval(updateClock, 1000);
   }
-}
-
-function requestForResult() {
-  const testPassageId = parseInt($(".form-check")[0].dataset.testPassage)
-
-  Rails.ajax({
-  url: "/test_passages/" + testPassageId,
-  type:'PATCH',
-  });
 }
 
 function getTimeRemaining(endtime) {
