@@ -16,7 +16,7 @@ class TestPassagesController < ApplicationController
   end
 
   def result
-    @test_passage.evaluate_result!
+    @test_passage.evaluate_result! if @test_passage.passed.nil? && @test_passage.completed?
   end
 
   def create_gist

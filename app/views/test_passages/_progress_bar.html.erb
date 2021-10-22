@@ -1,3 +1,3 @@
 <div id="test-progress">
-  <%= tag.div @test_passage.progress(previous = true).to_s + "%", id: "test-bar", data: { progress: @test_passage.progress, prev_progress: @test_passage.progress(previous = true) } %>
+  <%= tag.div progress(@test_passage, previous = true).to_s + "%", id: "test-bar", data: { progress: progress(@test_passage), prev_progress: progress(@test_passage, previous = true) } %>
 </div>
