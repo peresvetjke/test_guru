@@ -13,9 +13,6 @@ function initializeClock() {
   const endtime = $("#testEndTime")[0];
   if(endtime) {
     const innerEndtime = endtime.innerHTML;
-    // const clock = document.getElementById("clockdiv");
-    // const minutesSpan = clock.querySelector(".minutes");
-    // const secondsSpan = clock.querySelector(".seconds");
     const minutesSpan = $("#clockdiv .minutes")[0];
     const secondsSpan = $("#clockdiv .seconds")[0];
 
@@ -27,7 +24,6 @@ function initializeClock() {
       if (t.total <= 0) {
         clearInterval(timeinterval);
         requestForResult();
-        // window.location.reload();
       }
     }
 

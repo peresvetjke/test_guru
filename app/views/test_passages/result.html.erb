@@ -1,9 +1,8 @@
 
 <%= render 'progress_bar' %>
 
-<h2>Прохождение теста '<%= @test_passage.test.title %>' завершено.</h2> 
-
 <% if @test_passage.completed? %>
+<h2>Прохождение теста '<%= @test_passage.test.title %>' завершено.</h2> 
   <% if @test_passage.passed %>
     <% color = "green" %>
     <% message = 'Тест пройден.' %>

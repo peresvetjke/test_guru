@@ -6,8 +6,7 @@ class TestPassage < ApplicationRecord
   has_many   :badges, through: :badges_awardings
 
   after_initialize  :after_initialize_set_current_question, if: :new_record?
-  after_validation  :after_validation_define_next_question, on: :update #, unless: :completed?
-  # after_validation  :after_validation_evaluate_result,      on: :update, if: :completed?
+  after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
   scope :test_passages_by_user, ->(user) { where('user_id = ?', user.id) }
 
@@ -32,28 +31,6 @@ class TestPassage < ApplicationRecord
     ( self.correct_questions.to_f / self.test.questions.count ) * 100
   end
 
-  def current_question_order_number
-    return '-' if self.completed?
-    self.test.questions.pluck(:id).sort.index(self.current_question.id) + 1
-  end
-
-  def previous_question_order_number
-    return self.current_question_order_number if self.current_question_order_number == 1
-    return self.test.questions.count if self.completed?
-    
-    self.current_question_order_number - 1 
-  end
-
-  def progress(previous = false)
-    question_order_number = previous ? previous_question_order_number : current_question_order_number
-
-    if self.completed? && previous == false
-      100
-    else
-      (((question_order_number - 1) / self.test.questions.count.to_f) * 100).ceil
-    end
-  end
-
   def time_elapsed?
     return false unless self.test.max_time_set?
     (Time.now - self.created_at) / 60 > self.test.max_time_min
@@ -64,10 +41,6 @@ class TestPassage < ApplicationRecord
   end
   
   private
-
-  def after_validation_evaluate_result
-    passed = passed?
-  end
 
   def passed?
     return false if time_elapsed?

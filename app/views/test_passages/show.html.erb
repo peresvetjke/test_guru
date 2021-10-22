@@ -6,7 +6,7 @@
 
 <h2>Прохождение теста '<%= @test_passage.test.title %>'</h2> 
 <br>
-<h4><%= @test_passage.current_question.body %> (Вопрос <%= @test_passage.current_question_order_number %> из <%= @test_passage.test.questions.count %>)</h4>
+<h4><%= @test_passage.current_question.body %> (Вопрос <%= current_question_order_number(@test_passage) %> из <%= @test_passage.test.questions.count %>)</h4>
 <br>
 
 <%= render 'form' %>
