@@ -30,7 +30,7 @@ class BadgeAwarder
   end
 
   def first_try_award?(value = true)
-    @test_passage.passed? && TestPassage.joins(:test).where("test_passages.user_id = ? AND tests.id = ?", @test_passage.user, @test_passage.test).count == 1
+    @test_passage.passed? && TestPassage.where("test_passages.user_id = ? AND test_id = ?", @test_passage.user, @test_passage.test).count == 1
   end
 
   def badge_awardable?(badge)
