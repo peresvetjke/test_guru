@@ -3,6 +3,7 @@ class CreateBadgesAwardings < ActiveRecord::Migration[6.1]
     create_table :badges_awardings do |t|
       t.references :user, null: false, foreign_key: true
       t.references :badge, null: false, foreign_key: true
+      t.references :test_passage, null: false, foreign_key: true
 
       t.timestamps
     end

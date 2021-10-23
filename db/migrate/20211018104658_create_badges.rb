@@ -4,7 +4,7 @@ class CreateBadges < ActiveRecord::Migration[6.1]
       t.text :title
       t.text :image_url
       t.references :rule, null: false, foreign_key: true
-      t.boolean :active
+      t.boolean :recurrent, default: false
 
       t.timestamps
     end
