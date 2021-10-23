@@ -269,6 +269,6 @@ rule3 = Rule.create!(title:"Выдать бэйдж после успешног�
 puts 'Rules created'
 
 badge1 = rule1.badges.create!(title: "успешноe прохождение всех тестов из категории 2", image_url: 'https://i.ibb.co/V2Lf81M/936f1b39-011e-4b8b-81d9-82e83319bcde.png')
-badge2 = rule2.badges.create!(title: "успешноe прохождение теста с первой попытки", image_url: 'https://i.ibb.co/gJFXDL8/19c4596f-46f5-489d-ac5a-8b82d6ea1465.png')
+badge2 = rule2.badges.create!(title: "успешноe прохождение теста с первой попытки", image_url: 'https://i.ibb.co/gJFXDL8/19c4596f-46f5-489d-ac5a-8b82d6ea1465.png', recurrent: true)
 badge3 = rule3.badges.create!(title: "успешное прохождение всех тестов уровня 2", image_url: 'https://i.ibb.co/D4dXMjM/de3fc14d-2f30-49b5-8762-a38598a1d26f.png')
 puts 'Badges created'

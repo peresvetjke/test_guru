@@ -9,7 +9,6 @@ class TestPassage < ApplicationRecord
   after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
   scope :test_passages_by_user, ->(user) { where('user_id = ?', user.id) }
-  scope :test_passages_by_user_and_test, -> (user, test) { joins(:test).where("test_passages.user_id = ? AND tests.id = ?", user.id, test.id) }
 
   PASSING_PERCENTAGE = 85.freeze
 
