@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_083233) do
+ActiveRecord::Schema.define(version: 2021_10_18_104726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,27 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
+  create_table "badges", force: :cascade do |t|
+    t.text "title"
+    t.text "image_url"
+    t.bigint "rule_id", null: false
+    t.boolean "recurrent", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rule_id"], name: "index_badges_on_rule_id"
+  end
+
+  create_table "badges_awardings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "badge_id", null: false
+    t.bigint "test_passage_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["badge_id"], name: "index_badges_awardings_on_badge_id"
+    t.index ["test_passage_id"], name: "index_badges_awardings_on_test_passage_id"
+    t.index ["user_id"], name: "index_badges_awardings_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.text "title", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -34,9 +55,9 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.bigint "user_id", null: false
     t.text "subject", null: false
     t.text "content", null: false
+    t.text "email", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "email", null: false
     t.index ["user_id"], name: "index_contact_messages_on_user_id"
   end
 
@@ -58,12 +79,22 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
+  create_table "rules", force: :cascade do |t|
+    t.text "title", null: false
+    t.text "method", null: false
+    t.integer "rules"
+    t.integer "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "test_passages", force: :cascade do |t|
     t.bigint "test_id", null: false
     t.bigint "user_id", null: false
     t.bigint "questions_id"
     t.bigint "current_question_id"
     t.integer "correct_questions", default: 0
+    t.boolean "passed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["current_question_id"], name: "index_test_passages_on_current_question_id"
@@ -77,10 +108,10 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.integer "level", default: 1
     t.text "reference"
     t.bigint "category_id", null: false
+    t.boolean "published", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "author_id", null: false
-    t.boolean "published", default: false, null: false
     t.index ["author_id"], name: "index_tests_on_author_id"
     t.index ["category_id"], name: "index_tests_on_category_id"
     t.index ["title", "level"], name: "index_tests_on_title_and_level", unique: true
@@ -91,6 +122,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.text "email", default: "", null: false
     t.text "name"
     t.text "surname"
+    t.text "type", default: "User"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false
@@ -101,12 +133,15 @@ ActiveRecord::Schema.define(version: 2021_10_18_083233) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.text "type", default: "User"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "badges", "rules"
+  add_foreign_key "badges_awardings", "badges"
+  add_foreign_key "badges_awardings", "test_passages"
+  add_foreign_key "badges_awardings", "users"
   add_foreign_key "contact_messages", "users"
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"

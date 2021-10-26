@@ -2,14 +2,16 @@ class TestPassage < ApplicationRecord
   belongs_to :test
   belongs_to :user
   belongs_to :current_question, class_name: 'Question', optional: true
-
-  validate :test_finalized
+  has_many   :badges_awardings
+  has_many   :badges, through: :badges_awardings
 
   after_initialize  :after_initialize_set_current_question, if: :new_record?
   after_validation  :after_validation_define_next_question, on: :update, unless: :completed?
 
+  scope :test_passages_by_user, ->(user) { where('user_id = ?', user.id) }
+
   PASSING_PERCENTAGE = 85.freeze
-  
+
   def accept!(answer_ids)
     evaluate_answer(answer_ids)
     save
@@ -54,13 +56,12 @@ class TestPassage < ApplicationRecord
     end
   end
 
-  private
-
-  def test_finalized
-    unless self.test.finalized?
-      errors.add :base, "Данный тест находится в разработке. Пожалуйста, выберите другой."
-    end
+  def evaluate_result!
+    self.passed = passed?
+    save
   end
+
+  private
 
   def after_initialize_set_current_question
     self.current_question = test.questions.order(id: :asc).first

@@ -1,0 +1,14 @@
+<div class="form-check">
+
+<%= form_with url: (@rule.new_record? ? admin_rules_path : admin_rule_path(@rule)), model: @rule do |form| %>
+    <%= form.label              :title, t('tests.index.title'), class: 'form-check-label' %> <br>
+    <%= form.text_field         :title %> <br>
+    <%= form.label              :method, 'Метод проверки', class: 'form-check-label' %> <br>
+    <%= form.select             :method, BadgeAwarder::METHOD_TYPES.map(&:to_s), class: 'form-check-input' %> <br>
+    <%= form.label              :value, class: 'form-check-label' %> <br>
+    <%= form.text_field         :value %> <br>
+    <br>
+    <%= form.submit t('admin.save'), class: 'btn btn-primary btn-sm' %>
+<% end %>
+<br>
+</div>

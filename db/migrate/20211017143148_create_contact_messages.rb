@@ -4,6 +4,7 @@ class CreateContactMessages < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
       t.text :subject, null: false
       t.text :content, null: false
+      t.text :email, null: false
 
       t.timestamps
     end

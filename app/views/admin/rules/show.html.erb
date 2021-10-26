@@ -1,0 +1,9 @@
+<h2><%= t('rules.show.rule') %> '<%= @rule.title %>'</h2> <br>
+
+<p><strong>Метод: </strong><%= @rule.method %></p>
+<p><strong>Значение: </strong><%= @rule.value %></p>
+
+<br>
+
+<%= link_to t('admin.change'), edit_admin_rule_path %>
+<%= link_to t('shared.back'), admin_rules_path %>

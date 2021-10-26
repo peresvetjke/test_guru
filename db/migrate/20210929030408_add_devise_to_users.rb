@@ -43,7 +43,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[6.1]
     # add_index :users, :unlock_token,         unique: true
 
     change_column_default :users, :email, ""
-    remove_column :users, :password_digest
+    # remove_column :users, :password_digest
   end
 
   def self.down

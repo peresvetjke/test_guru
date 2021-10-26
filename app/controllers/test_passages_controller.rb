@@ -2,21 +2,23 @@ class TestPassagesController < ApplicationController
   before_action :set_test_passage, only: %i[ show edit update destroy result create_gist ]
 
   def show
-    render :result if @test_passage.completed?
+    redirect_to result_test_passage_path(@test_passage) if @test_passage.completed?
   end
 
   def update
     @test_passage.accept!(params[:answer_ids])
 
     if @test_passage.completed?
-      redirect_to result_test_passage_path
+      @test_passage.evaluate_result!
+      BadgeAwarder.new(@test_passage).call
+      redirect_to result_test_passage_path(@test_passage)
     else
       redirect_to @test_passage
     end
   end
 
   def result
-
+    @badges = @test_passage.badges
   end
 
   def create_gist

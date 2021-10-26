@@ -1,0 +1,5 @@
+<h2><%= t('admin.new_rule') %></h2>
+<%= render 'shared/errors', resource: @rule %>
+<%= render 'form' %>
+
+<%= link_to t('shared.back'), admin_rules_path %>
