@@ -3,7 +3,7 @@ class CreateRules < ActiveRecord::Migration[6.1]
     create_table :rules do |t|
       t.text :title, null: false
       t.text :method, null: false
-      t.text :rules, :value,  :text
+      t.integer :rules, :value
 
       t.timestamps
     end
