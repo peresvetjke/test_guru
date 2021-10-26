@@ -40,12 +40,12 @@ class TestPassage < ApplicationRecord
     current_question.nil? || time_elapsed?
   end
   
-  private
-
   def passed?
     return false if time_elapsed?
     success_percent >= PASSING_PERCENTAGE
   end
+
+  private
 
   private
 
